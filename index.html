@@ -25,6 +25,15 @@
   </head>
   <body>
     <div id="map"></div>
+    <div id="controllerContainer">
+      <button id="enterFullscreen">Enter fullscreen</button>
+      <button>Left</button>
+      <button>Up</button>
+      <button>Right</button>
+      <button>Down</button>
+      <button id="zoomIN">ZoomIN</button>
+      <button id="zoomOUT">ZoomOUT</button>
+    </div>
     <script>
       var map;
       function initMap() {
@@ -57,14 +66,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
     async defer></script>
 
-    <div id="controllerContainer">
-      <button id="enterFullscreen">Enter fullscreen</button>
-      <button>Left</button>
-      <button>Up</button>
-      <button>Right</button>
-      <button>Down</button>
-      <button id="zoomIN">ZoomIN</button>
-      <button id="zoomOUT">ZoomOUT</button>
-    </div>
+
   </body>
 </html>
