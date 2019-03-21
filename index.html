@@ -5,63 +5,134 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes"> <!--Sätter apple enheter till fullscreen-->
     <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 90%;
+        height: 90vh;
       }
 
       #controllerContainer {
-        height: 10%;
+        height: 10vh;
+        margin-top: 20px;
+      }
+
+      #startScreen {
+        height: 100%;
+        position: relative;
+        top: 30%;
       }
       /* Optional: Makes the sample page fill the window */
       html, body {
         height: 100%;
         margin: 0;
         padding: 0;
+        background-image: linear-gradient(to right top, #00c9b7, #4bd4b6, #70e0b6, #8feab7, #acf5b9);
+        text-align: center;
       }
     </style>
   </head>
   <body>
-    <div id="map"></div>
-    <div id="controllerContainer">
-      <button id="enterFullscreen">Enter fullscreen</button>
-      <button>Left</button>
-      <button>Up</button>
-      <button>Right</button>
-      <button>Down</button>
-      <button id="zoomIN">ZoomIN</button>
-      <button id="zoomOUT">ZoomOUT</button>
+    <div id="startScreen" onclick="start()">
+      <img src="Logo_TV_2015.svg.png" height="120px" width="150px"/>
+      <h1>Welcome to my app!</h1>
+      <button>Start</button>
     </div>
+    <div id="entireSite">
+      <div id="map"></div>
+      <div id="controllerContainer">
+        <button id="enterFullscreen" onclick="toggleFullscreen()">Fullscreen</button>
+        <!--<button>Left</button>
+        <button>Up</button>
+        <button>Right</button>
+        <button>Down</button>-->
+        <button id="rotate" onclick="rotate()">Rotate</button>
+        <button id="tilt" onclick="tilt()">3D</button>
+        <button id="zoomIN" >ZoomIN</button>
+        <button id="zoomOUT" >ZoomOUT</button>
+      </div>
+    </div>
+
     <script>
+      // Initiellt stadie. En startskärm i vår app.
+      $('#startScreen').show();
+      $('#entireSite').hide();
+
+
+      // Toggle startscreen to application
+      function start(){
+        $('#startScreen').hide();
+        $('#entireSite').show();
+        document.body.requestFullscreen();
+      }
+      // Script regarding the map and its features
       var map;
+      var currentTilt = 0;
+      var isFullscreen = false;
+
       function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
           // center: {lat: 59.3498092, lng: 18.0684758},
           center: {lat: 59.33, lng: 18.056},
           zoom: 18,
-          mapTypeId: 'satellite',  // terrain, satellite, roadmap, hybrid
-          disableDefaultUI: true  // Tar bort kontroller för att zoom osv!
+          mapTypeId: 'hybrid',  // terrain, satellite, roadmap, hybrid
+          disableDefaultUI: true,  // Tar bort kontroller för att zoom osv!
+          tilt: 0, // Sätter en vinkel på vyn
+          heading: 180, // Infallsvinkeln sätts till 90
         });
-        map.setTilt(45);  // Ändrar så att infallsvinkeln är på 45 grader. Fungerar på mapptyperna satellite och hybrid
+
+        marker = new google.maps.Marker({draggable: true, animation: google.maps.Animation.DROP, position: {lat: 59.33, lng: 18.056}, map: map}); // Is draggable and has "load animation"
+        marker2 = new google.maps.Marker({draggable: false, position: {lat: 59.330009, lng: 18.05421}, map: map}); // Is not draggable
+
+        marker.addListener('click', toggleBounce);
+      }
+      // Rotaterar 90 grader
+      function rotate(){
+          var currentHeading = map.getHeading() || 0;
+          map.setHeading(currentHeading+90);
       }
 
+      // Ändrar vinkeln
+      function tilt(){
+          if(currentTilt == 0){
+            map.setTilt(45);
+            currentTilt = 45;
+          } else{
+            map.setTilt(0);
+            currentTilt = 0;
+          }
+      }
+
+      // Bounce animation för markern
+      function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+
+      // Hanterar "zoomen"
       var zoomIN = document.getElementById("zoomIN");
       var zoomOUT = document.getElementById("zoomOUT");
       zoomIN.addEventListener("click", function() {
-          alert("IN");
-          map.setZoom(24);
+          map.setZoom(map.getZoom()+1);
       }, false);
       zoomOUT.addEventListener("click", function() {
-          alert("IN");
-          map.setZoom(8);
+          map.setZoom(map.getZoom()-1);
       }, false);
 
-      var goFS = document.getElementById("enterFullscreen");
-      goFS.addEventListener("click", function() {
+      // Hanterar "Toggle fullscreen"
+      function toggleFullscreen (){
+        if(!isFullscreen){
           document.body.requestFullscreen();
-      }, false);
+          isFullscreen = true;
+        } else{
+          document.body.exitFullscreen();
+          isFullscreen = false;
+        }
+      }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
     async defer></script>
