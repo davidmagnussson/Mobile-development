@@ -8,9 +8,9 @@
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-      /* #map {
+      #map {
         height: 100%;
-      } */
+      }
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
@@ -20,7 +20,7 @@
     </style>
   </head>
   <body>
-    <div id="container">
+    <!--<div id="container">
       <h1>Hello world!</h1>
       <button id="goFS">toggle fullscreen</button>
       <script>
@@ -36,8 +36,8 @@
             }
         }, false);
       </script>
-    </div>
-<!--
+    </div>-->
+
     <div id="map"></div>
     <script>
       var map;
@@ -49,9 +49,9 @@
           mapTypeId: 'hybrid'  // terrain, satellite, roadmap
         });
         map.setTilt(45);  // Ändrar så att infallsvinkeln är på 45 grader. Fungerar på satellite och hybrid typ.
-      }-->
+      }
     </script>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-    async defer></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+    async defer></script>
   </body>
 </html>
