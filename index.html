@@ -42,18 +42,11 @@
     async defer></script>
 
     <div id="controllerContainer">
-      <button id="toggleFullscreen">toggle fullscreen</button>
+      <button id="enterFullscreen">Enter fullscreen</button>
       <script>
-        var toggle = 0;
-        var goFS = document.getElementById("toggleFullscreen");
+        var goFS = document.getElementById("enterFullscreen");
         goFS.addEventListener("click", function() {
-            if (toggle == 0){
-              document.getElementById('map').requestFullscreen();
-              toggle = 1;
-            } else{
-              document.exitFullscreen();
-              toggle = 0;
-            }
+            document.body.requestFullscreen();
         }, false);
       </script>
     </div>
