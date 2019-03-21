@@ -46,9 +46,10 @@
           // center: {lat: 59.3498092, lng: 18.0684758},
           center: {lat: 59.32932349, lng: 18.0685800800000063},
           zoom: 17,
-          mapTypeId: 'hybrid'  // terrain, satellite, roadmap
+          mapTypeId: 'hybrid',  // terrain, satellite, roadmap
+          disableDefaultUI: true
         });
-        map.setTilt(45);  // Ändrar så att infallsvinkeln är på 45 grader. Fungerar på satellite och hybrid typ.
+        // map.setTilt(45);  // Ändrar så att infallsvinkeln är på 45 grader. Fungerar på satellite och hybrid typ.
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
