@@ -47,7 +47,19 @@
       <button>Up</button>
       <button>Right</button>
       <button>Down</button>
+      <button id="zoomIN">ZoomIN</button>
+      <button id="zoomOUT">ZoomOUT</button>
 
+      <script>  // Handles the zoom, in or out.
+        var zoomIN = document.getElementById("zoomIN");
+        var zoomOUT = document.getElementById("zoomOUT");
+        zoomIN.addEventListener("click", function() {
+            map.setZoom(24);
+        }, false);
+        zoomOUT.addEventListener("click", function() {
+            map.setZoom(8);
+        }, false);
+      </script>
       <script> // Script för att hantera fullscreen.
         var goFS = document.getElementById("enterFullscreen");
         goFS.addEventListener("click", function() {
