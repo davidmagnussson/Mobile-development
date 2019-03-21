@@ -54,9 +54,11 @@
         var zoomIN = document.getElementById("zoomIN");
         var zoomOUT = document.getElementById("zoomOUT");
         zoomIN.addEventListener("click", function() {
+            alert("IN");
             map.setZoom(24);
         }, false);
         zoomOUT.addEventListener("click", function() {
+            alert("OUT");
             map.setZoom(8);
         }, false);
       </script>
