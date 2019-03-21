@@ -37,6 +37,22 @@
         });
         map.setTilt(45);  // Ändrar så att infallsvinkeln är på 45 grader. Fungerar på mapptyperna satellite och hybrid
       }
+
+      var zoomIN = document.getElementById("zoomIN");
+      var zoomOUT = document.getElementById("zoomOUT");
+      zoomIN.addEventListener("click", function() {
+          alert("IN");
+          map.setZoom(24);
+      }, false);
+      zoomOUT.addEventListener("click", function() {
+          alert("IN");
+          map.setZoom(8);
+      }, false);
+
+      var goFS = document.getElementById("enterFullscreen");
+      goFS.addEventListener("click", function() {
+          document.body.requestFullscreen();
+      }, false);
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
     async defer></script>
@@ -48,26 +64,7 @@
       <button>Right</button>
       <button>Down</button>
       <button id="zoomIN">ZoomIN</button>
-      <button id="zoomOUT">ZoomOUT</button>
-
-      <script>  // Handles the zoom, in or out.
-        var zoomIN = document.getElementById("zoomIN");
-        var zoomOUT = document.getElementById("zoomOUT");
-        zoomIN.addEventListener("click", function() {
-            alert("IN");
-            map.setZoom(24);
-        }, false);
-        zoomOUT.addEventListener("click", function() {
-            alert("IN");
-            map.setZoom(8);
-        }, false);
-      </script>
-      <script> // Script för att hantera fullscreen.
-        var goFS = document.getElementById("enterFullscreen");
-        goFS.addEventListener("click", function() {
-            document.body.requestFullscreen();
-        }, false);
-      </script>
+      <button id="zoomOUT">ZoomOUT</button>      
     </div>
   </body>
 </html>
