@@ -49,23 +49,6 @@
         });
       }
 
-      // Hanterar zoom in och zoom out.
-      var zoomIN = document.getElementById("zoomIN");
-      var zoomOUT = document.getElementById("zoomOUT");
-      zoomIN.addEventListener("click", function() {
-          alert("IN");
-          map.setZoom(24);
-      }, false);
-      zoomOUT.addEventListener("click", function() {
-          alert("OUT");
-          map.setZoom(8);
-      }, false);
-
-      // Script för att hantera fullscreen
-      var goFS = document.getElementById("enterFullscreen");
-      goFS.addEventListener("click", function() {
-          document.body.requestFullscreen();
-      }, false);
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
     async defer></script>
