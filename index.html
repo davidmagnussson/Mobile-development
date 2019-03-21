@@ -20,13 +20,6 @@
   </head>
   <body>
     <div id="map"></div>
-    <button id="goFS">Go fullsreen</button>
-    <script>
-      var goFS = document.getElementById("goFS");
-      goFS.addEventListener("click", function() {
-          document.body.requestFullscreen();
-      }, false);
-    </script>
     <script>
       var map;
       function initMap() {
@@ -40,5 +33,6 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
     async defer></script>
+    <script>document.body.requestFullscreen();</script>
   </body>
 </html>
