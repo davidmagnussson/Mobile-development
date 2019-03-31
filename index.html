@@ -43,11 +43,7 @@
     <div id="entireSite">
       <div id="map"></div>
       <div id="controllerContainer">
-        <button id="enterFullscreen" onclick="toggleFullscreen()">Fullscreen</button>
-        <!--<button>Left</button>
-        <button>Up</button>
-        <button>Right</button>
-        <button>Down</button>-->
+        <!--<button id="enterFullscreen" onclick="toggleFullscreen()">Fullscreen</button>-->
         <button id="rotate" onclick="rotate()">Rotate</button>
         <button id="tilt" onclick="tilt()">3D</button>
         <button id="zoomIN" >ZoomIN</button>
@@ -125,6 +121,7 @@
       }, false);
 
       // Hanterar "Toggle fullscreen"
+      /*
       function toggleFullscreen (){
         if(!isFullscreen){
           document.body.requestFullscreen();
@@ -134,6 +131,7 @@
           isFullscreen = false;
         }
       }
+      */
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
     async defer></script>
