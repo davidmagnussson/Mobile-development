@@ -5,18 +5,20 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes"> <!--Sätter apple enheter till fullscreen-->
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
        /*ADD COMMENT FOR TESTING*/
       #map {
-        height: 90vh;
+        height: 80vh;
       }
 
       #controllerContainer {
-        height: 10vh;
-        margin-top: 20px;
+        height: 20vh;
+        margin-top: 22px;
       }
 
       #startScreen {
@@ -38,17 +40,32 @@
     <div id="startScreen" onclick="start()">
       <img src="Logo_TV_2015.svg.png" height="120px" width="150px"/>
       <h1>Welcome to my app!</h1>
-      <button>Start</button>
+      <button class="btn btn-primary">Start</button>
     </div>
     <div id="entireSite">
       <div id="map"></div>
       <div id="controllerContainer">
-        <!--<button id="enterFullscren" onclick="toggleFullscreen()">Fullscreen</button>-->
-        <button id="rotate" onclick="rotate()">Rotate</button>
-        <button id="tilt" onclick="tilt()">3D</button>
-        <button id="zoomIN" >ZoomIN</button>
-        <button id="zoomOUT" >ZoomOUT</button>
-        <button id="CurrentLocation" onclick="currentLocation()">Current location</button>
+          <!--<i class="fas fa-map-marker-alt"></i>-->
+          <div class="row justify-content-md-center">
+              <div id="navigateArrows" class="col col-sm-2">
+                <button class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i></button>
+                <button class="btn btn-primary"><i class="fas fa-arrow-circle-up"></i></button>
+                <button class="btn btn-primary"><i class="fas fa-arrow-circle-right"></i></button>
+                <button class="btn btn-primary"><i class="fas fa-arrow-circle-down"></i></button>
+              </div>
+              <div class="col-md-auto"></div>
+              <div id="mapControllers" class="col col-sm-3 ">
+                <button class="btn btn-primary" id="rotate" onclick="rotate()"><i class="fas fa-undo"></i></button>
+                <button class="btn btn-primary" id="tilt" onclick="tilt()">3D</button>
+                <button class="btn btn-primary" id="zoomIN" ><i class="fas fa-search-plus"></i></button>
+                <button class="btn btn-primary" id="zoomOUT" ><i class="fas fa-search-minus"></i></button>
+                <button class="btn btn-primary" id="CurrentLocation" onclick="currentLocation()"><i class="fas fa-location-arrow"></i></button>
+                <button class="btn btn-primary" id="placeMarker" onclick="placeMarker()"><i class="fas fa-map-pin"></i></button>
+                <br />
+                <button class="btn btn-primary" id="TC" onclick="showTC()">TC</button>
+                <button class="btn btn-primary" id="CH" onclick="showCH()">City hall</button>
+              </div>
+          </div>
       </div>
     </div>
 
@@ -69,20 +86,28 @@
       var currentTilt = 0;
       var isFullscreen = false;
       var geoLocSupport;
+      var TC = {
+        lat: 59.33,
+        lng: 18.056,
+      };
+      var CH = {
+        lat: 59.3274948,
+        lng: 18.054869800000006,
+      };
+
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           // center: {lat: 59.3498092, lng: 18.0684758},
           center: {lat: 59.33, lng: 18.056},
-          zoom: 18,
+          zoom: 16,
           mapTypeId: 'hybrid',  // terrain, satellite, roadmap, hybrid
           disableDefaultUI: true,  // Tar bort kontroller för att zoom osv!
           tilt: 45, // Sätter en vinkel på vyn
           heading: 180, // Infallsvinkeln sätts till 90
         });
 
-        marker = new google.maps.Marker({draggable: true, animation: google.maps.Animation.DROP, position: {lat: 59.33, lng: 18.056}, map: map}); // Is draggable and has "load animation"
-        marker2 = new google.maps.Marker({draggable: false, position: {lat: 59.330009, lng: 18.05421}, map: map}); // Is not draggable
-
+        marker = new google.maps.Marker({draggable: false, animation: google.maps.Animation.DROP, position: {lat: TC.lat, lng: TC.lng}, map: map}); // Is draggable and has "load animation"
+        marker2 = new google.maps.Marker({draggable: false, position: {lat: CH.lat, lng: CH.lng}, map: map}); // Is not draggable
         marker.addListener('click', toggleBounce);
 
         // Kollar om geolocation stöds av browsern
@@ -90,6 +115,9 @@
           geoLocSupport = true;
         } else{ // Om browsern inte stödjer geolocation
           geoLocSupport = false;
+
+          var button = document.getElementById("CurrentLocation");  // Om geolocation är avstängt, "disablar" vi knappen!
+          button.className += " disabled";
         }
       }
 
@@ -129,18 +157,7 @@
           map.setZoom(map.getZoom()-1);
       }, false);
 
-      // Hanterar "Toggle fullscreen"
-      /*
-      function toggleFullscreen (){
-        if(!isFullscreen){
-          document.body.requestFullscreen();
-          isFullscreen = true;
-        } else{
-          document.body.exitFullscreen();
-          isFullscreen = false;
-        }
-      }
-      */
+      // Kollar var "current location är och sätter en marker där"
       function currentLocation() {
         if(geoLocSupport){
           navigator.geolocation.getCurrentPosition(function(position){
@@ -149,8 +166,25 @@
               lng: position.coords.longitude,
             };
             map.setCenter(pos);
+            currentLocationMarker = new google.maps.Marker({draggable: true, animation: google.maps.Animation.DROP, position: {lat: pos.lat, lng: pos.lng}, map: map}); // Is draggable and has "load animation"
           });
         }
+      }
+
+      // Centers the position of Stockholms Traveling Center (T-Centralen)
+      function showTC(){
+        map.setCenter(TC);
+      };
+
+      // Centers the position of Stockholms City hall
+      function showCH(){
+        map.setCenter(CH);
+      };
+
+      // Places a marker at current locatio
+      function placeMarker(){
+        var currentCenter = map.getCenter();
+        myMarker = new google.maps.Marker({draggable: true, animation: google.maps.Animation.DROP, position: {lat: currentCenter.lat(), lng: currentCenter.lng()}, map: map});
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
