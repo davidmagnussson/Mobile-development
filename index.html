@@ -181,7 +181,7 @@
         map.setCenter(CH);
       };
 
-      // Places a marker at current locatio
+      // Places a marker at current location
       function placeMarker(){
         var currentCenter = map.getCenter();
         myMarker = new google.maps.Marker({draggable: true, animation: google.maps.Animation.DROP, position: {lat: currentCenter.lat(), lng: currentCenter.lng()}, map: map});
