@@ -48,6 +48,7 @@
         <button id="tilt" onclick="tilt()">3D</button>
         <button id="zoomIN" >ZoomIN</button>
         <button id="zoomOUT" >ZoomOUT</button>
+        <button id="CurrentLocation" onclick="currentLocation()">Current location</button>
       </div>
     </div>
 
@@ -67,7 +68,7 @@
       var map;
       var currentTilt = 0;
       var isFullscreen = false;
-
+      var geoLocSupport;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           // center: {lat: 59.3498092, lng: 18.0684758},
@@ -83,7 +84,15 @@
         marker2 = new google.maps.Marker({draggable: false, position: {lat: 59.330009, lng: 18.05421}, map: map}); // Is not draggable
 
         marker.addListener('click', toggleBounce);
+
+        // Kollar om geolocation stöds av browsern
+        if (navigator.geolocation) {
+          geoLocSupport = true;
+        } else{ // Om browsern inte stödjer geolocation
+          geoLocSupport = false;
+        }
       }
+
       // Rotaterar 90 grader
       function rotate(){
           var currentHeading = map.getHeading() || 0;
@@ -132,6 +141,17 @@
         }
       }
       */
+      function currentLocation() {
+        if(geoLocSupport){
+          navigator.geolocation.getCurrentPosition(function(position){
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            map.setCenter(pos);
+          });
+        }
+      }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
     async defer></script>
