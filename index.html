@@ -131,7 +131,9 @@
               City hall
             </button>
 
-            <button class="add-button">Add to home screen</button>
+            <button id="addButton" class="add-button">
+              Add to home screen
+            </button>
           </div>
           <br />
         </div>
@@ -141,7 +143,7 @@
     <script>
       //testar skiten test
       let deferredPrompt;
-      const addBtn = document.querySelector(".add-button");
+      const addBtn = document.getElementById("addButton");
 
       window.addEventListener("beforeinstallprompt", e => {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
