@@ -1,7 +1,7 @@
 {
   "name": "A basic Progressive Web App",
   "short_name": "Basic PWA",
-  "start_url": ".",
+  "start_url": "https://davidmagnussson.github.io/mobile-development/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ccc",
