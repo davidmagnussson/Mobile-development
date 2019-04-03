@@ -2,16 +2,27 @@
 <html>
   <head>
     <title>Simple Maps</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes"> <!--Sätter apple enheter till fullscreen-->
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--Sätter apple enheter till fullscreen-->
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-       /*ADD COMMENT FOR TESTING*/
+      /*ADD COMMENT FOR TESTING*/
       #map {
         height: 80vh;
       }
@@ -27,58 +38,132 @@
         top: 30%;
       }
       /* Optional: Makes the sample page fill the window */
-      html, body {
+      html,
+      body {
         height: 100%;
         margin: 0;
         padding: 0;
-        background-image: linear-gradient(to right top, #00c9b7, #4bd4b6, #70e0b6, #8feab7, #acf5b9);
+        background-image: linear-gradient(
+          to right top,
+          #00c9b7,
+          #4bd4b6,
+          #70e0b6,
+          #8feab7,
+          #acf5b9
+        );
         text-align: center;
       }
     </style>
   </head>
   <body>
     <div id="startScreen" onclick="start()">
-      <img src="Logo_TV_2015.svg.png" height="120px" width="150px"/>
+      <img src="Logo_TV_2015.svg.png" height="120px" width="150px" />
       <h1>Welcome to my app!</h1>
       <button class="btn btn-primary">Start</button>
     </div>
     <div id="entireSite">
       <div id="map"></div>
-      <div id="controllerContainer">          
-          <div class="row justify-content-md-center">
-              <div id="navigateArrows" class="col col-sm-2">
-                <button class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i></button>
-                <button class="btn btn-primary"><i class="fas fa-arrow-circle-up"></i></button>
-                <button class="btn btn-primary"><i class="fas fa-arrow-circle-right"></i></button>
-                <button class="btn btn-primary"><i class="fas fa-arrow-circle-down"></i></button>
-              </div>
-              <div class="col-md-auto"></div>
-              <div id="mapControllers" class="col col-sm-3 ">
-                <button class="btn btn-primary" id="rotate" onclick="rotate()"><i class="fas fa-undo"></i></button>
-                <button class="btn btn-primary" id="tilt" onclick="tilt()">3D</button>
-                <button class="btn btn-primary" id="zoomIN" ><i class="fas fa-search-plus"></i></button>
-                <button class="btn btn-primary" id="zoomOUT" ><i class="fas fa-search-minus"></i></button>
-                <button class="btn btn-primary" id="CurrentLocation" onclick="currentLocation()"><i class="fas fa-location-arrow"></i></button>
-                <button class="btn btn-primary" id="placeMarker" onclick="placeMarker()"><i class="fas fa-map-pin"></i></button>
-                <br />
-                <button class="btn btn-primary" id="TC" onclick="showTC()">TC</button>
-                <button class="btn btn-primary" id="CH" onclick="showCH()">City hall</button>
-              </div>
-              <br />
+      <div id="controllerContainer">
+        <div class="row justify-content-md-center">
+          <div id="navigateArrows" class="col col-sm-2">
+            <button class="btn btn-primary">
+              <i
+                class="fas fa-arrow-circle-left"
+                onclick="panLeftFunction()"
+              ></i>
+            </button>
+            <button class="btn btn-primary">
+              <i class="fas fa-arrow-circle-up" onclick="panUpFunction()"></i>
+            </button>
+            <button class="btn btn-primary">
+              <i
+                class="fas fa-arrow-circle-right"
+                onclick="panRightFunction()"
+              ></i>
+            </button>
+            <button class="btn btn-primary">
+              <i
+                class="fas fa-arrow-circle-down"
+                onclick="panDownFunction()"
+              ></i>
+            </button>
           </div>
+          <div class="col-md-auto"></div>
+          <div id="mapControllers" class="col col-sm-3 ">
+            <button class="btn btn-primary" id="rotate" onclick="rotate()">
+              <i class="fas fa-undo"></i>
+            </button>
+            <button class="btn btn-primary" id="tilt" onclick="tilt()">
+              3D
+            </button>
+            <button class="btn btn-primary" id="zoomIN">
+              <i class="fas fa-search-plus"></i>
+            </button>
+            <button class="btn btn-primary" id="zoomOUT">
+              <i class="fas fa-search-minus"></i>
+            </button>
+            <button
+              class="btn btn-primary"
+              id="CurrentLocation"
+              onclick="currentLocation()"
+            >
+              <i class="fas fa-location-arrow"></i>
+            </button>
+            <button
+              class="btn btn-primary"
+              id="placeMarker"
+              onclick="placeMarker()"
+            >
+              <i class="fas fa-map-pin"></i>
+            </button>
+            <br />
+            <button class="btn btn-primary" id="TC" onclick="showTC()">
+              TC
+            </button>
+            <button class="btn btn-primary" id="CH" onclick="showCH()">
+              City hall
+            </button>
+
+            <button id="btnAdd">ADD ME</button>
+          </div>
+          <br />
+        </div>
       </div>
     </div>
 
     <script>
-      // Initiellt stadie. En startskärm i vår app.
-      $('#startScreen').show();
-      $('#entireSite').hide();
+      window.addEventListener("beforeinstallprompt", e => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        // Update UI notify the user they can add to home screen
+        btnAdd.style.display = "block";
+      });
 
+      btnAdd.addEventListener("click", e => {
+        // hide our user interface that shows our A2HS button
+        btnAdd.style.display = "none";
+        // Show the prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice.then(choiceResult => {
+          if (choiceResult.outcome === "accepted") {
+            console.log("User accepted the A2HS prompt");
+          } else {
+            console.log("User dismissed the A2HS prompt");
+          }
+          deferredPrompt = null;
+        });
+      });
+      // Initiellt stadie. En startskärm i vår app.
+      $("#startScreen").show();
+      $("#entireSite").hide();
 
       // Toggle startscreen to application
-      function start(){
-        $('#startScreen').hide();
-        $('#entireSite').show();
+      function start() {
+        $("#startScreen").hide();
+        $("#entireSite").show();
         document.body.requestFullscreen();
       }
       // Script regarding the map and its features
@@ -88,54 +173,64 @@
       var geoLocSupport;
       var TC = {
         lat: 59.33,
-        lng: 18.056,
+        lng: 18.056
       };
       var CH = {
         lat: 59.3274948,
-        lng: 18.054869800000006,
+        lng: 18.054869800000006
       };
 
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById("map"), {
           // center: {lat: 59.3498092, lng: 18.0684758},
-          center: {lat: 59.33, lng: 18.056},
+          center: { lat: 59.33, lng: 18.056 },
           zoom: 16,
-          mapTypeId: 'hybrid',  // terrain, satellite, roadmap, hybrid
-          disableDefaultUI: true,  // Tar bort kontroller för att zoom osv!
+          mapTypeId: "hybrid", // terrain, satellite, roadmap, hybrid
+          disableDefaultUI: true, // Tar bort kontroller för att zoom osv!
           tilt: 45, // Sätter en vinkel på vyn
-          heading: 180, // Infallsvinkeln sätts till 90
+          heading: 180 // Infallsvinkeln sätts till 90
         });
 
-        marker = new google.maps.Marker({draggable: false, animation: google.maps.Animation.DROP, position: {lat: TC.lat, lng: TC.lng}, map: map}); // Is draggable and has "load animation"
-        marker2 = new google.maps.Marker({draggable: false, position: {lat: CH.lat, lng: CH.lng}, map: map}); // Is not draggable
-        marker.addListener('click', toggleBounce);
+        marker = new google.maps.Marker({
+          draggable: false,
+          animation: google.maps.Animation.DROP,
+          position: { lat: TC.lat, lng: TC.lng },
+          map: map
+        }); // Is draggable and has "load animation"
+        marker2 = new google.maps.Marker({
+          draggable: false,
+          position: { lat: CH.lat, lng: CH.lng },
+          map: map
+        }); // Is not draggable
+        marker.addListener("click", toggleBounce);
 
         // Kollar om geolocation stöds av browsern
         if (navigator.geolocation) {
           geoLocSupport = true;
-        } else{ // Om browsern inte stödjer geolocation
+        } else {
+          // Om browsern inte stödjer geolocation
           geoLocSupport = false;
 
-          var button = document.getElementById("CurrentLocation");  // Om geolocation är avstängt, "disablar" vi knappen!
+          var button = document.getElementById("CurrentLocation"); // Om geolocation är avstängt, "disablar" vi knappen!
           button.className += " disabled";
         }
       }
 
       // Rotaterar 90 grader
-      function rotate(){
-          var currentHeading = map.getHeading() || 0;
-          map.setHeading(currentHeading+90);
+      function rotate() {
+        var currentHeading = map.getHeading() || 0;
+        map.setHeading(currentHeading + 90);
       }
 
       // Ändrar vinkeln
-      function tilt(){
-          if(currentTilt == 0){
-            map.setTilt(45);
-            currentTilt = 45;
-          } else{
-            map.setTilt(0);
-            currentTilt = 0;
-          }
+      function tilt() {
+        if (currentTilt == 0) {
+          map.setTilt(45);
+          currentTilt = 45;
+        } else {
+          map.setTilt(0);
+          currentTilt = 0;
+        }
       }
 
       // Bounce animation för markern
@@ -150,44 +245,81 @@
       // Hanterar "zoomen"
       var zoomIN = document.getElementById("zoomIN");
       var zoomOUT = document.getElementById("zoomOUT");
-      zoomIN.addEventListener("click", function() {
-          map.setZoom(map.getZoom()+1);
-      }, false);
-      zoomOUT.addEventListener("click", function() {
-          map.setZoom(map.getZoom()-1);
-      }, false);
+      zoomIN.addEventListener(
+        "click",
+        function() {
+          map.setZoom(map.getZoom() + 1);
+        },
+        false
+      );
+      zoomOUT.addEventListener(
+        "click",
+        function() {
+          map.setZoom(map.getZoom() - 1);
+        },
+        false
+      );
 
       // Kollar var "current location är och sätter en marker där"
       function currentLocation() {
-        if(geoLocSupport){
-          navigator.geolocation.getCurrentPosition(function(position){
+        if (geoLocSupport) {
+          navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
               lat: position.coords.latitude,
-              lng: position.coords.longitude,
+              lng: position.coords.longitude
             };
             map.setCenter(pos);
-            currentLocationMarker = new google.maps.Marker({draggable: true, animation: google.maps.Animation.DROP, position: {lat: pos.lat, lng: pos.lng}, map: map}); // Is draggable and has "load animation"
+            currentLocationMarker = new google.maps.Marker({
+              draggable: true,
+              animation: google.maps.Animation.DROP,
+              position: { lat: pos.lat, lng: pos.lng },
+              map: map
+            }); // Is draggable and has "load animation"
           });
         }
       }
 
       // Centers the position of Stockholms Traveling Center (T-Centralen)
-      function showTC(){
+      function showTC() {
         map.setCenter(TC);
-      };
+      }
 
       // Centers the position of Stockholms City hall
-      function showCH(){
+      function showCH() {
         map.setCenter(CH);
-      };
+      }
 
       // Places a marker at current location
-      function placeMarker(){
+      function placeMarker() {
         var currentCenter = map.getCenter();
-        myMarker = new google.maps.Marker({draggable: true, animation: google.maps.Animation.DROP, position: {lat: currentCenter.lat(), lng: currentCenter.lng()}, map: map});
+        myMarker = new google.maps.Marker({
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          position: { lat: currentCenter.lat(), lng: currentCenter.lng() },
+          map: map
+        });
+      }
+
+      function panUpFunction() {
+        map.panBy(0, -100);
+      }
+
+      function panDownFunction() {
+        map.panBy(0, 100);
+      }
+
+      function panLeftFunction() {
+        map.panBy(-100, 0);
+      }
+
+      function panRightFunction() {
+        map.panBy(100, 0);
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-    async defer></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+      async
+      defer
+    ></script>
   </body>
 </html>
