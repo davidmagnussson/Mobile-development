@@ -122,7 +122,7 @@
               City hall
             </button>
 
-            <button class="ad2hs-prompt" id="addButton" style="display:none">
+            <button class="ad2hs-prompt" id="addButton">
               Add to home screen
             </button>
           </div>
@@ -133,7 +133,7 @@
 
     <script>
       //testar skiten test
-      let deferredPrompt;
+      var deferredPrompt;
 
       window.addEventListener("beforeinstallprompt", function(e) {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
