@@ -1,0 +1,15 @@
+{
+  "background_color": "purple",
+  "description": "Shows a simple map app",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "/images/app-icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Simple Maps",
+  "short_name": "Maps",
+  "start_url": "."
+}
