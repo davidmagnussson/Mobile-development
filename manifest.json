@@ -1,6 +1,6 @@
 {
-  "name": "2 A basic Progressive Web App",
-  "short_name": "Basic PWA",
+  "name": "Simple Maps",
+  "short_name": "Maps",
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait",
