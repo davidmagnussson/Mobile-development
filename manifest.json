@@ -1,7 +1,7 @@
 {
   "name": "Simple Maps",
   "short_name": "Maps",
-  "start_url": "/mobile-development",
+  "start_url": "/mobile-development/index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ccc",
