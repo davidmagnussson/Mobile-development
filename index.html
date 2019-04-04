@@ -100,18 +100,10 @@
             <button class="btn btn-primary" id="zoomOUT">
               <i class="fas fa-search-minus"></i>
             </button>
-            <button
-              class="btn btn-primary"
-              id="CurrentLocation"
-              onclick="currentLocation()"
-            >
+            <button class="btn btn-primary" id="CurrentLocation" onclick="currentLocation()">
               <i class="fas fa-location-arrow"></i>
             </button>
-            <button
-              class="btn btn-primary"
-              id="placeMarker"
-              onclick="placeMarker()"
-            >
+            <button class="btn btn-primary" id="placeMarker" onclick="placeMarker()">
               <i class="fas fa-map-pin"></i>
             </button>
             <br />
@@ -132,6 +124,11 @@
     </div>
 
     <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
       //testar skiten testasdasd
       let deferredPrompt;
       const btnAdd = document.getElementById("addButton");
