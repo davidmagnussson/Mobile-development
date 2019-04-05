@@ -1,36 +1,68 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no,
+		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
+    />
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<head>
+    <title>Lab 2</title>
 
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, user-scalable=no,
-		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-	<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
-	<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css" />
-	<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>	
+    <style>
+      @import "ui/css/evothings-app.css";
+    </style>
 
-	<title>Lab 2</title>
+    <script>
+      // Redirect console.log to Evothings Workbench.
+      if (window.hyper && window.hyper.log) {
+        console.log = hyper.log;
+      }
+    </script>
+  </head>
 
-	<style>
-		@import 'ui/css/evothings-app.css';
-	</style>
+  <body ontouchstart="">
+    <!-- ontouchstart="" enables low-delay CSS transitions. -->
+    <h1>Lab 2</h1>
 
-	<script>
-	// Redirect console.log to Evothings Workbench.
-	if (window.hyper && window.hyper.log) { console.log = hyper.log }
-	</script>
+    <div id="main_page">
+      <p>this is the main page</p>
+    </div>
+    <div id="sub_page">
+      <p>this is the sub page</p>
+    </div>
+    <div id="about_page">
+      <p>this is the about page</p>
+    </div>
 
-</head>
+    <div class="tabbar">
+      <label class="tabbar__item">
+        <input type="radio" name="tabbar-c" checked="checked" />
+        <button class="tabbar__button">
+          <div class="tabbar__label">Main</div>
+        </button>
+      </label>
 
-<body ontouchstart=""><!-- ontouchstart="" enables low-delay CSS transitions. -->
-	<h1>Lab 2</h1>
-	
-	<!--Scripts-->
-	<script src="cordova.js"></script>
-	<script src="libs/evothings/evothings.js"></script>
-	<script src="libs/evothings/ui/ui.js"></script>
-	<!-- TODO: Add libraries that you need -->
-</body>
+      <label class="tabbar__item">
+        <input type="radio" name="tabbar-c" />
+        <button class="tabbar__button">
+          <div class="tabbar__label">About</div>
+        </button>
+      </label>
+    </div>
 
+    <!--Scripts-->
+    <script src="cordova.js"></script>
+    <script src="libs/evothings/evothings.js"></script>
+    <script src="libs/evothings/ui/ui.js"></script>
+    <!-- TODO: Add libraries that you need -->
+  </body>
 </html>
