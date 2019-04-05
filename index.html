@@ -126,14 +126,14 @@
     </div>
 
     <script>
-    if ('serviceWorker' in navigator) {  // Är service worker aktiverat???
-        navigator.serviceWorker.register('/service-worker.js')
-        .then(function () {console.log("serviceWorker is ookok");});
-    }
+      // if ('serviceWorker' in navigator) {  // Är service worker aktiverat???
+      //     navigator.serviceWorker.register('/service-worker.js')
+      //     .then(function () {console.log("serviceWorker is ookok");});
+      // }
       //testar skiten testasdasd
       let deferredPrompt;
       const btnAdd = document.getElementById("addButton");
-      //btnAdd.style.display = "none";
+      btnAdd.style.display = "none";
 
       window.addEventListener("beforeinstallprompt", e => {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
