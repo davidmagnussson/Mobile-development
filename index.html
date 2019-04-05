@@ -197,15 +197,21 @@
           heading: 180 // Infallsvinkeln sätts till 90
         });
 
+        //Info about locations
+        infoTC = new google.maps.InfoWindow;
+        infoCH = new google.maps.InfoWindow;
+
         marker = new google.maps.Marker({
           draggable: false,
           animation: google.maps.Animation.DROP,
           position: { lat: TC.lat, lng: TC.lng },
+          icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png',
           map: map
         }); // Is draggable and has "load animation"
         marker2 = new google.maps.Marker({
           draggable: false,
           position: { lat: CH.lat, lng: CH.lng },
+          icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png',
           map: map
         }); // Is not draggable
         marker.addListener("click", toggleBounce);
@@ -288,11 +294,18 @@
       // Centers the position of Stockholms Traveling Center (T-Centralen)
       function showTC() {
         map.setCenter(TC);
+        infoTC.setPosition(TC);
+        infoTC.setContent('This is the Traveling Center!');
+        infoTC.open(map);
+
       }
 
       // Centers the position of Stockholms City hall
       function showCH() {
         map.setCenter(CH);
+        infoCH.setPosition(CH);
+        infoCH.setContent('This is the City Hall!');
+        infoCH.open(map);
       }
 
       // Places a marker at current location
@@ -327,6 +340,6 @@
       async
       defer
     ></script>
-    <script type="text/javascript" src="main.js"></script>
+    <!-- <script type="text/javascript" src="main.js"></script> -->
   </body>
 </html>
