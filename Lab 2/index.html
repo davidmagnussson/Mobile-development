@@ -18,46 +18,115 @@
     <title>Lab 2</title>
 
     <style>
-      @import "ui/css/evothings-app.css";
+	  @import "ui/css/evothings-app.css";
+	  
+	  body{
+		text-align: center;
+	  }
+
+	  #list-of-excercises{
+		  width: 90%;
+		  margin-left: 5%;
+		  margin-right: 5%;
+	  }
+
+	  hr{
+		  width:95%;
+	  }
+
+	  ons-list-item{
+		  height:90px;
+		  
+	  }
     </style>
 
     <script>
       // Redirect console.log to Evothings Workbench.
       if (window.hyper && window.hyper.log) {
         console.log = hyper.log;
-      }
+	  };
+	  
+	  document.addEventListener('prechange', function(event) {
+  		document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+});
     </script>
   </head>
 
   <body ontouchstart="">
-    <!-- ontouchstart="" enables low-delay CSS transitions. -->
-    <h1>Lab 2</h1>
+	<ons-page>				 
+		<ons-tabbar>
+		  <ons-tab page="home.html" label="Home" icon="fa-home" active>
+		  </ons-tab>
+		  <ons-tab page="about.html" label="About us" icon="fa-info-circle" active-icon="fa-info-circle">
+		  </ons-tab>
+		</ons-tabbar>
+	  </ons-page>
+	  
+	  <template id="home.html">
+			<ons-page id="Home">
+				<h2>Welcome to Gym Guide!</h2>
+				<h4>Number #1 out there!</h4>
+				<hr />
+				<br />
+				<div id="list-of-excercises">
+				 <ons-list>		  	  		  
+				<ons-list-item>
+				  <div class="left">
+					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
+				  </div>
+				  <div class="center">
+					<span class="list-item__title">Benchpress</span><span class="list-item__subtitle">Excercise for your chest</span>
+				  </div>
+				</ons-list-item>
+			 
+				<ons-list-item>
+				  <div class="left">
+					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
+				  </div>
+				  <div class="center">
+					<span class="list-item__title">Rows</span><span class="list-item__subtitle">Hits lower back</span>
+				  </div>
+				</ons-list-item>
+			 
+				<ons-list-item>
+				  <div class="left">
+					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
+				  </div>
+				  <div class="center">
+					<span class="list-item__title">Chins</span><span class="list-item__subtitle">Good for upper back</span>
+					  </div>
+				</ons-list-item>
+			
+				<ons-list-item>
+				  <div class="left">
+					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
+				  </div>
+				  <div class="center">
+					<span class="list-item__title">Biceps Curls</span><span class="list-item__subtitle">For huge arms</span>
+				  </div>
+				</ons-list-item>
+			
+				<ons-list-item>
+				  <div class="left">
+					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
+				  </div>
+				  <div class="center">
+					<span class="list-item__title">Bicycle</span><span class="list-item__subtitle">Get that six-pack</span>
+				  </div>
+				</ons-list-item>
+				 </ons-list>
+				</div>
+			</ons-page>
+		</template>
 
-    <div id="main_page">
-      <p>this is the main page</p>
-    </div>
-    <div id="sub_page">
-      <p>this is the sub page</p>
-    </div>
-    <div id="about_page">
-      <p>this is the about page</p>
-    </div>
-
-    <div class="tabbar">
-      <label class="tabbar__item">
-        <input type="radio" name="tabbar-c" checked="checked" />
-        <button class="tabbar__button">
-          <div class="tabbar__label">Main</div>
-        </button>
-      </label>
-
-      <label class="tabbar__item">
-        <input type="radio" name="tabbar-c" />
-        <button class="tabbar__button">
-          <div class="tabbar__label">About</div>
-        </button>
-      </label>
-    </div>
+	  	<template id="about.html">
+			<ons-page id="About">
+				<h2>About us</h2>
+				<h4>What is Gym Guide!</h4>
+				<hr />
+				<br />
+			</ons-page>
+		</template>		
 
     <!--Scripts-->
     <script src="cordova.js"></script>
