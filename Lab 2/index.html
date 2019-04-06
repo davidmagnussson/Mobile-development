@@ -12,7 +12,8 @@
       rel="stylesheet"
       href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
     />
-    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+	<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+	<script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <title>Lab 2</title>
@@ -45,15 +46,58 @@
       if (window.hyper && window.hyper.log) {
         console.log = hyper.log;
 	  };
+
+	document.addEventListener('init', function(event) {
+		var page = event.target;
+
+		if (page.id === 'Home') {
+			page.querySelector('#Bench').onclick = function() {
+				// ons.notification.alert('Bench!');
+				// document.querySelector('#content').innerHTML = "Bench";
+				document.querySelector('#myNavigator').pushPage('Bench.html');
+			};
+			page.querySelector('#Rows').onclick = function() {
+				// ons.notification.alert('Rows!');
+				// document.querySelector('#content').innerHTML = "Rows";
+				document.querySelector('#myNavigator').pushPage('Rows.html');
+			};
+			page.querySelector('#Chins').onclick = function() {
+				// ons.notification.alert('Chins!');
+				// document.querySelector('#content').innerHTML = "Chins";
+				document.querySelector('#myNavigator').pushPage('Chins.html');
+			};
+			page.querySelector('#Biceps').onclick = function() {
+				// ons.notification.alert('Biceps!');
+				// document.querySelector('#content').innerHTML = "Biceps";
+				document.querySelector('#myNavigator').pushPage('Biceps.html');
+			};
+			page.querySelector('#Bicycle').onclick = function() {
+				// ons.notification.alert('Bicycle!');
+				// document.querySelector('#content').innerHTML = "Bicycle";
+				document.querySelector('#myNavigator').pushPage('Bicycle.html');
+			};
+		}
+		// else if (page.id === 'Rows') {
+		// 	page.querySelector('ons-page').innerHTML = 'Rows';
+		// } else if (page.id === 'Chins') {
+		// 	page.querySelector('ons-toolbar .center').innerHTML = 'Chins';
+		// } else if (page.id === 'Biceps') {
+		// 	page.querySelector('ons-toolbar .center').innerHTML = 'Biceps';
+		// } else if (page.id === 'Bicycle') {
+		// 	page.querySelector('ons-toolbar .center').innerHTML = 'Bicycle';
+		// }
+	});
 	  
-	  document.addEventListener('prechange', function(event) {
+	document.addEventListener('prechange', function(event) {
   		document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
-});
+	});
     </script>
   </head>
 
   <body ontouchstart="">
-	  <ons-page>				 
+	<ons-navigator swipeable id="myNavigator" page="init.html"></ons-navigator>
+	<template id="init.html">
+	  <ons-page>			 
 		<ons-tabbar>
 		  <ons-tab page="home.html" label="Home" icon="fa-home" active>
 		  </ons-tab>
@@ -61,6 +105,8 @@
 		  </ons-tab>
 		</ons-tabbar>
 	  </ons-page>
+	</template>
+	
 	  
 	  <template id="home.html">
 			<ons-page id="Home">
@@ -70,7 +116,7 @@
 				<br />
 				<div id="list-of-excercises">
 				 <ons-list>		  	  		  
-				<ons-list-item>
+				<ons-list-item id="Bench" class="exc">
 				  <div class="left">
 					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
 				  </div>
@@ -79,7 +125,7 @@
 				  </div>
 				</ons-list-item>
 			 
-				<ons-list-item>
+				<ons-list-item id="Rows" class="exc">
 				  <div class="left">
 					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
 				  </div>
@@ -88,7 +134,7 @@
 				  </div>
 				</ons-list-item>
 			 
-				<ons-list-item>
+				<ons-list-item id="Chins" class="exc">
 				  <div class="left">
 					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
 				  </div>
@@ -97,7 +143,7 @@
 					  </div>
 				</ons-list-item>
 			
-				<ons-list-item>
+				<ons-list-item id="Biceps" class="exc">
 				  <div class="left">
 					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
 				  </div>
@@ -106,7 +152,7 @@
 				  </div>
 				</ons-list-item>
 			
-				<ons-list-item>
+				<ons-list-item id="Bicycle" class="exc">
 				  <div class="left">
 					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
 				  </div>
@@ -137,8 +183,62 @@
 					<p>Davmart is a group with two students taking a course in Mobile development at KTH. The members of this group is David Magnusson and Martin Mosesson</p>
 				</div>
 			</ons-page>
-		</template>		
+		</template>
 
+		<template id="Bench.html">
+			<ons-page id="Bench">
+				<ons-toolbar>
+					<div class="left"><ons-back-button>Home</ons-back-button></div>
+					<div class="center">Bench</div>
+				</ons-toolbar>				
+
+				<p>Instruction page</p>
+			</ons-page>
+		</template>
+
+		<template id="Rows.html">
+			<ons-page id="Rows">
+				<ons-toolbar>
+					<div class="left"><ons-back-button>Home</ons-back-button></div>
+					<div class="center">Rows</div>
+				</ons-toolbar>				
+
+				<p>Instruction page</p>
+			</ons-page>
+		</template>
+
+		<template id="Chins.html">
+			<ons-page id="Chins">
+				<ons-toolbar>
+					<div class="left"><ons-back-button>Home</ons-back-button></div>
+					<div class="center">Chins</div>
+				</ons-toolbar>				
+
+				<p>Instruction page</p>
+			</ons-page>
+		</template>
+
+		<template id="Biceps.html">
+			<ons-page id="Biceps">
+				<ons-toolbar>
+					<div class="left"><ons-back-button>Home</ons-back-button></div>
+					<div class="center">Biceps</div>
+				</ons-toolbar>				
+
+				<p>Instruction page</p>
+			</ons-page>
+		</template>
+
+		<template id="Bicycle.html">
+			<ons-page id="Bicycle">
+				<ons-toolbar>
+					<div class="left"><ons-back-button>Home</ons-back-button></div>
+					<div class="center">Bicycle</div>
+				</ons-toolbar>				
+
+				<p>Instruction page</p>
+			</ons-page>
+		</template>		
     <!--Scripts-->
     <script src="cordova.js"></script>
     <script src="libs/evothings/evothings.js"></script>
