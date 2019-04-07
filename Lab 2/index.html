@@ -12,233 +12,260 @@
       rel="stylesheet"
       href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
     />
-	<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-	<script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <title>Lab 2</title>
 
     <style>
-	  @import "ui/css/evothings-app.css";
+      @import "ui/css/evothings-app.css";
 
-	  body{
-		text-align: center;
-	  }
+      body {
+        text-align: center;
+      }
 
-	  #list-of-excercises{
-		  width: 90%;
-		  margin-left: 5%;
-		  margin-right: 5%;
-	  }
+      #list-of-excercises {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+      }
 
-	  hr{
-		  width:95%;
-	  }
+      hr {
+        width: 95%;
+      }
 
-	  ons-list-item{
-		  height:90px;
-
-	  }
+      ons-list-item {
+        height: 90px;
+      }
     </style>
 
     <script>
       // Redirect console.log to Evothings Workbench.
       if (window.hyper && window.hyper.log) {
         console.log = hyper.log;
-	  };
+      }
 
-	document.addEventListener('init', function(event) {
-		var page = event.target;
+      document.addEventListener("init", function(event) {
+        var page = event.target;
 
-		if (page.id === 'Home') {
-			page.querySelector('#Bench').onclick = function() {
-				// ons.notification.alert('Bench!');
-				// document.querySelector('#content').innerHTML = "Bench";
-				document.querySelector('#myNavigator').pushPage('Bench.html');
-			};
-			page.querySelector('#Rows').onclick = function() {
-				// ons.notification.alert('Rows!');
-				// document.querySelector('#content').innerHTML = "Rows";
-				document.querySelector('#myNavigator').pushPage('Rows.html');
-			};
-			page.querySelector('#Chins').onclick = function() {
-				// ons.notification.alert('Chins!');
-				// document.querySelector('#content').innerHTML = "Chins";
-				document.querySelector('#myNavigator').pushPage('Chins.html');
-			};
-			page.querySelector('#Biceps').onclick = function() {
-				// ons.notification.alert('Biceps!');
-				// document.querySelector('#content').innerHTML = "Biceps";
-				document.querySelector('#myNavigator').pushPage('Biceps.html');
-			};
-			page.querySelector('#Bicycle').onclick = function() {
-				// ons.notification.alert('Bicycle!');
-				// document.querySelector('#content').innerHTML = "Bicycle";
-				document.querySelector('#myNavigator').pushPage('Bicycle.html');
-			};
-		}
-		// else if (page.id === 'Rows') {
-		// 	page.querySelector('ons-page').innerHTML = 'Rows';
-		// } else if (page.id === 'Chins') {
-		// 	page.querySelector('ons-toolbar .center').innerHTML = 'Chins';
-		// } else if (page.id === 'Biceps') {
-		// 	page.querySelector('ons-toolbar .center').innerHTML = 'Biceps';
-		// } else if (page.id === 'Bicycle') {
-		// 	page.querySelector('ons-toolbar .center').innerHTML = 'Bicycle';
-		// }
-	});
+        if (page.id === "Home") {
+          page.querySelector("#Bench").onclick = function() {
+            document.querySelector("#myNavigator").pushPage("Bench.html");
+          };
+          page.querySelector("#Rows").onclick = function() {
+            document.querySelector("#myNavigator").pushPage("Rows.html");
+          };
+          page.querySelector("#Chins").onclick = function() {
+            document.querySelector("#myNavigator").pushPage("Chins.html");
+          };
+          page.querySelector("#Biceps").onclick = function() {
+            document.querySelector("#myNavigator").pushPage("Biceps.html");
+          };
+          page.querySelector("#Bicycle").onclick = function() {
+            document.querySelector("#myNavigator").pushPage("Bicycle.html");
+          };
+        }
+      });
 
-	document.addEventListener('prechange', function(event) {
-  		document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
-	});
+      document.addEventListener("prechange", function(event) {
+        document.querySelector(
+          "ons-toolbar .center"
+        ).innerHTML = event.tabItem.getAttribute("label");
+      });
     </script>
   </head>
 
   <body ontouchstart="">
-	<ons-navigator swipeable id="myNavigator" page="init.html"></ons-navigator>
-	<template id="init.html">
-	  <ons-page>
-		<ons-tabbar>
-		  <ons-tab page="home.html" label="Home" icon="fa-home" active>
-		  </ons-tab>
-		  <ons-tab page="about.html" label="About us" icon="fa-info-circle" active-icon="fa-info-circle">
-		  </ons-tab>
-		</ons-tabbar>
-	  </ons-page>
-	</template>
+    <ons-navigator swipeable id="myNavigator" page="init.html"></ons-navigator>
 
+    <template id="init.html">
+      <ons-page>
+        <ons-tabbar>
+          <ons-tab page="home.html" label="Home" icon="fa-home" active>
+          </ons-tab>
+          <ons-tab
+            page="about.html"
+            label="About us"
+            icon="fa-info-circle"
+            active-icon="fa-info-circle"
+          >
+          </ons-tab>
+        </ons-tabbar>
+      </ons-page>
+    </template>
 
-	  <template id="home.html">
-			<ons-page id="Home">
-				<h2>Welcome to Gym Guide!</h2>
-				<h4>Number #1 out there!</h4>
-				<hr />
-				<br />
-				<div id="list-of-excercises">
-				 <ons-list>
-				<ons-list-item id="Bench" class="exc">
-				  <div class="left">
-					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
-				  </div>
-				  <div class="center">
-					<span class="list-item__title">Benchpress</span><span class="list-item__subtitle">Excercise for your chest</span>
-				  </div>
-				</ons-list-item>
+    <!--The template that shows the starting page and all of the  sexcercis-->
+    <template id="home.html">
+      <ons-page id="Home">
+        <h2>Welcome to Gym Guide!</h2>
+        <h4>Number #1 out there!</h4>
+        <hr />
+        <br />
+        <div id="list-of-excercises">
+          <!-- Lists up all of the excercises, each excercise has its own template below! -->
+          <ons-list>
+            <ons-list-item id="Bench" class="exc">
+              <div class="left">
+                <img
+                  class="list-item__thumbnail"
+                  src="https://placekitten.com/g/40/40"
+                />
+              </div>
+              <div class="center">
+                <span class="list-item__title">Benchpress</span
+                ><span class="list-item__subtitle"
+                  >Excercise for your chest</span
+                >
+              </div>
+            </ons-list-item>
 
-				<ons-list-item id="Rows" class="exc">
-				  <div class="left">
-					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
-				  </div>
-				  <div class="center">
-					<span class="list-item__title">Rows</span><span class="list-item__subtitle">Hits lower back</span>
-				  </div>
-				</ons-list-item>
+            <ons-list-item id="Rows" class="exc">
+              <div class="left">
+                <img
+                  class="list-item__thumbnail"
+                  src="https://placekitten.com/g/40/40"
+                />
+              </div>
+              <div class="center">
+                <span class="list-item__title">Rows</span
+                ><span class="list-item__subtitle">Hits lower back</span>
+              </div>
+            </ons-list-item>
 
-				<ons-list-item id="Chins" class="exc">
-				  <div class="left">
-					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
-				  </div>
-				  <div class="center">
-					<span class="list-item__title">Chins</span><span class="list-item__subtitle">Good for upper back</span>
-					  </div>
-				</ons-list-item>
+            <ons-list-item id="Chins" class="exc">
+              <div class="left">
+                <img
+                  class="list-item__thumbnail"
+                  src="https://placekitten.com/g/40/40"
+                />
+              </div>
+              <div class="center">
+                <span class="list-item__title">Chins</span
+                ><span class="list-item__subtitle">Good for upper back</span>
+              </div>
+            </ons-list-item>
 
-				<ons-list-item id="Biceps" class="exc">
-				  <div class="left">
-					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
-				  </div>
-				  <div class="center">
-					<span class="list-item__title">Biceps Curls</span><span class="list-item__subtitle">For huge arms</span>
-				  </div>
-				</ons-list-item>
+            <ons-list-item id="Biceps" class="exc">
+              <div class="left">
+                <img
+                  class="list-item__thumbnail"
+                  src="https://placekitten.com/g/40/40"
+                />
+              </div>
+              <div class="center">
+                <span class="list-item__title">Biceps Curls</span
+                ><span class="list-item__subtitle">For huge arms</span>
+              </div>
+            </ons-list-item>
 
-				<ons-list-item id="Bicycle" class="exc">
-				  <div class="left">
-					<img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
-				  </div>
-				  <div class="center">
-					<span class="list-item__title">Bicycle</span><span class="list-item__subtitle">Get that six-pack</span>
-				  </div>
-				</ons-list-item>
-				 </ons-list>
-				</div>
-			</ons-page>
-		</template>
+            <ons-list-item id="Bicycle" class="exc">
+              <div class="left">
+                <img
+                  class="list-item__thumbnail"
+                  src="https://placekitten.com/g/40/40"
+                />
+              </div>
+              <div class="center">
+                <span class="list-item__title">Bicycle</span
+                ><span class="list-item__subtitle">Get that six-pack</span>
+              </div>
+            </ons-list-item>
+          </ons-list>
+        </div>
+      </ons-page>
+    </template>
 
-	  	<template id="about.html">
-			<ons-page id="About">
-				<h2>About us</h2>
-				<h4>What is Gym Guide!</h4>
-				<hr />
-				<br />
+    <!--This template shows the "about us" page-->
+    <template id="about.html">
+      <ons-page id="About">
+        <h2>About us</h2>
+        <h4>What is Gym Guide!</h4>
+        <hr />
+        <br />
 
-				<div>
-					<h3>About our application</h3>
-					<p>The application is instructions on how to perform excercices and What the excercise is good for!</p>
+        <div>
+          <h3>About our application</h3>
+          <p>
+            The application is instructions on how to perform excercices and
+            What the excercise is good for!
+          </p>
 
-					<h3>Onsen IO</h3>
-					<p>This application is run and powered by the mobile UI development tool and framework Onsen</p>
+          <h3>Onsen IO</h3>
+          <p>
+            This application is run and powered by the mobile UI development
+            tool and framework Onsen
+          </p>
 
-					<h3>Davmart</h3>
-					<p>Davmart is a group with two students taking a course in Mobile development at KTH. The members of this group is David Magnusson and Martin Mosesson</p>
-				</div>
-			</ons-page>
-		</template>
+          <h3>Davmart</h3>
+          <p>
+            Davmart is a group with two students taking a course in Mobile
+            development at KTH. The members of this group is David Magnusson and
+            Martin Mosesson
+          </p>
+        </div>
+      </ons-page>
+    </template>
 
-		<template id="Bench.html">
-			<ons-page id="Bench">
-				<ons-toolbar>
-					<div class="left"><ons-back-button>Home</ons-back-button></div>
-					<div class="center">Bench</div>
-				</ons-toolbar>
+    <!-- Show the instructions of benchpress -->
+    <template id="Bench.html">
+      <ons-page id="Bench">
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Home</ons-back-button></div>
+          <div class="center">Bench</div>
+        </ons-toolbar>
 
-				<p>Instruction page</p>
-			</ons-page>
-		</template>
+        <p>Instruction page</p>
+      </ons-page>
+    </template>
 
-		<template id="Rows.html">
-			<ons-page id="Rows">
-				<ons-toolbar>
-					<div class="left"><ons-back-button>Home</ons-back-button></div>
-					<div class="center">Rows</div>
-				</ons-toolbar>
+    <!-- Show the instructions of benchpress -->
+    <template id="Rows.html">
+      <ons-page id="Rows">
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Home</ons-back-button></div>
+          <div class="center">Rows</div>
+        </ons-toolbar>
 
-				<p>Instruction page</p>
-			</ons-page>
-		</template>
+        <p>Instruction page</p>
+      </ons-page>
+    </template>
 
-		<template id="Chins.html">
-			<ons-page id="Chins">
-				<ons-toolbar>
-					<div class="left"><ons-back-button>Home</ons-back-button></div>
-					<div class="center">Chins</div>
-				</ons-toolbar>
+    <!-- Show the instructions of Chins -->
+    <template id="Chins.html">
+      <ons-page id="Chins">
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Home</ons-back-button></div>
+          <div class="center">Chins</div>
+        </ons-toolbar>
 
-				<p>Instruction page</p>
-			</ons-page>
-		</template>
+        <p>Instruction page</p>
+      </ons-page>
+    </template>
 
-		<template id="Biceps.html">
-			<ons-page id="Biceps">
-				<ons-toolbar>
-					<div class="left"><ons-back-button>Home</ons-back-button></div>
-					<div class="center">Biceps</div>
-				</ons-toolbar>
+    <!-- Show the instructions of Chins -->
+    <template id="Biceps.html">
+      <ons-page id="Biceps">
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Home</ons-back-button></div>
+          <div class="center">Biceps</div>
+        </ons-toolbar>
 
-				<p>Instruction page</p>
-			</ons-page>
-		</template>
+        <p>Instruction page</p>
+      </ons-page>
+    </template>
 
-		<template id="Bicycle.html">
-			<ons-page id="Bicycle">
-				<ons-toolbar>
-					<div class="left"><ons-back-button>Home</ons-back-button></div>
-					<div class="center">Bicycle</div>
-				</ons-toolbar>
+    <!-- Show the instructions of Chins -->
+    <template id="Bicycle.html">
+      <ons-page id="Bicycle">
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Home</ons-back-button></div>
+          <div class="center">Bicycle</div>
+        </ons-toolbar>
 
-				<p>Instruction page</p>
-			</ons-page>
-		</template>
+        <p>Instruction page</p>
+      </ons-page>
+    </template>
     <!--Scripts-->
     <script src="cordova.js"></script>
     <script src="libs/evothings/evothings.js"></script>
