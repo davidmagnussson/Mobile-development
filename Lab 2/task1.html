@@ -19,60 +19,29 @@
     <title>Lab 2</title>
 
     <style>
-	  	@import "ui/css/evothings-app.css";
+	  @import "ui/css/evothings-app.css";
 
-	  	body{
-			text-align: center;
-			text: #eee;
-	  	}
+	  body{
+		text-align: center;
+	  }
 
-	  	#list-of-excercises{
+	  #list-of-excercises{
 		  width: 90%;
 		  margin-left: 5%;
 		  margin-right: 5%;
-	  	}
+	  }
 
-	  	hr{
+	  hr{
 		  width:95%;
-	  	}
+	  }
 
-	  	ons-list-item{
+	  ons-list-item{
 		  height:90px;
-	  	}
+	  }
 
-	  	li{
+	  li{
 		  padding:5px;
-		}
-		
-		#about-tab{
-			background-color: #E94057;		
-		}
-
-		.header{
-			background-color: #E94057;
-			
-		}
-
-		.header-text{
-			color: #eee;
-			font-size: 20px;
-		}
-
-		.exc{			
-			color:#E94057;
-			font-size: 17px;
-			font-weight: bold;
-		}
-
-		#home-header{			
-			color: #E94057;
-		}
-		
-		h4, h3, h2, h1{
-			color: #E94057;
-		}
-
-		
+	  }
     </style>
 
     <script>
@@ -93,6 +62,9 @@
 			};
 			page.querySelector('#Chins').onclick = function() {
 				document.querySelector('#myNavigator').pushPage('Face.html');
+			};
+			page.querySelector('#About').onclick = function() {
+				document.querySelector('#myNavigator').pushPage('about.html');
 			};			
 		}
 	});
@@ -104,30 +76,24 @@
   </head>
 
  	<body ontouchstart="">
-		<ons-navigator swipeable id="myNavigator" page="init.html"></ons-navigator>
+		<ons-navigator swipeable id="myNavigator" page="home.html"></ons-navigator>
 
-		<template id="init.html">
+		<!-- <template id="init.html">
 		  <ons-page>
 			<ons-tabbar>
-			  	<ons-tab page="home.html" active="true">
-					<ons-icon size="20px" style="color:#E94057;" icon="ion-home"></ons-icon>
-					<span style="font-size: 20px; color:#E94057;">Home</span>
-			  	</ons-tab>
-			  	<ons-tab page="about.html" id="about-tab">
-					<ons-icon size="20px" style="color:#eee" icon="fa-info-circle"></ons-icon>
-					<span style="font-size: 20px; color: #eee;">About us</span>
-			  	</ons-tab>
+			  <ons-tab page="home.html" label="Home" icon="fa-home" active>
+			  </ons-tab>
+			  <ons-tab page="about.html" label="About us" icon="fa-info-circle" active-icon="fa-info-circle">
+			  </ons-tab>
 			</ons-tabbar>
 		  </ons-page>
-		</template>
+		</template> -->
 
 		<!--The template that shows the starting page and all of the excercis-->
 	  	<template id="home.html">
 			<ons-page id="Home">
-				<div id="home-header">
-					<h2>Welcome to RelaxApp!</h2>
-					<h4>Number #1 out there!</h4>
-				</div>				
+				<h2>Welcome to RelaxApp!</h2>
+				<h4>Number #1 out there!</h4>
 				<hr />
 				<br />
 				<div id="list-of-excercises">  <!-- Lists up all of the excercises, each excercise has its own template below! -->
@@ -158,6 +124,15 @@
 							<span class="list-item__title">Face</span><span class="list-item__subtitle">Great before sleep</span>
 							</div>
 						</ons-list-item>
+
+						<ons-list-item id="About" class="exc">
+						<div class="left">
+							<img class="list-item__thumbnail" src="./de-visu-black-and-white-picture-young-woman-practicing-yoga-on-the-beach-at-sunset_a-G-10350482-9664567.jpg" height="40px" width="40px">
+						</div>
+						<div class="center">
+							<span class="list-item__title">About us</span><span class="list-item__subtitle">Who we are, what we do!</span>
+							</div>
+						</ons-list-item>
 					</ons-list>
 				</div>
 			</ons-page>
@@ -166,20 +141,26 @@
 		<!--This template shows the "about us" page-->
 	  	<template id="about.html">
 			<ons-page id="About">
-				<h2>About us</h2>
-				<h4>What is RelaxApp!</h4>
-				<hr />
-				<br />
+				<ons-toolbar>
+					<div class="left"><ons-back-button>Home</ons-back-button></div>
+					<div class="center">About us!</div>
+				</ons-toolbar>	
+				<div id="content">			
+					<br />		
+					<h1>What is RelaxApp!</h1>
+					<hr />
+					<br />
 
-				<div>
-					<h3>About our application</h3>
-					<p>The application is instructions on how to perform excercices and What the excercise is good for!</p>
+					<div>
+						<h3>About our application</h3>
+						<p>The application is instructions on how to perform excercices and What the excercise is good for!</p>
 
-					<h3>Onsen IO</h3>
-					<p>This application is run and powered by the mobile UI development tool and framework Onsen</p>
+						<h3>Onsen IO</h3>
+						<p>This application is run and powered by the mobile UI development tool and framework Onsen</p>
 
-					<h3>Davmart</h3>
-					<p>Davmart is a group with two students taking a course in Mobile development at KTH. The members of this group is David Magnusson and Martin Mosesson</p>
+						<h3>Davmart</h3>
+						<p>Davmart is a group with two students taking a course in Mobile development at KTH. The members of this group is David Magnusson and Martin Mosesson</p>
+					</div>
 				</div>
 			</ons-page>
 		</template>
@@ -187,9 +168,9 @@
 		<!-- Show the instructions on shoulder relaxations -->
 		<template id="Shoulders.html">
 			<ons-page id="Bench">
-				<ons-toolbar class="header">
+				<ons-toolbar>
 					<div class="left"><ons-back-button>Home</ons-back-button></div>
-					<div class="center header-text">Shoulders relaxations</div>
+					<div class="center">Shoulders relaxations</div>
 				</ons-toolbar>				
 				<div class="content">
 					<h1>Instructions</h1>
@@ -211,9 +192,9 @@
 		<!-- Show the instructions on Feet relaxations -->
 		<template id="Feet.html">
 			<ons-page id="Rows">
-					<ons-toolbar class="header">
+				<ons-toolbar>
 					<div class="left"><ons-back-button>Home</ons-back-button></div>
-					<div class="center header-text">Feet relaxations</div>
+					<div class="center">Feet relaxations</div>
 				</ons-toolbar>				
 				<div class="content">
 					<h1>Instructions</h1>
@@ -238,9 +219,9 @@
 		<!-- Show the instructions on Face relaxations -->
 		<template id="Face.html">
 			<ons-page id="Chins">
-					<ons-toolbar class="header">
+				<ons-toolbar>
 					<div class="left"><ons-back-button>Home</ons-back-button></div>
-					<div class="center header-text">Face relaxations</div>
+					<div class="center">Face relaxations</div>
 				</ons-toolbar>				
 				<div class="content">
 					<h1>Instructions</h1>
