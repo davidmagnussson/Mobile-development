@@ -166,7 +166,19 @@
           h2,
           h1 {
             color: #e94057;
-          }
+		  }
+		  
+		  .tab[active]{
+			  background-color: #e94057;			  
+		  }
+
+		  .tab[active] ons-icon, .tab[active] span{
+				color: #eee;
+		  }
+
+		  span{
+			  color: #e94057;
+		  }
         </style>
 
         <script>
@@ -191,12 +203,23 @@
             </div>
           </ons-toolbar>
 
-          <ons-tabbar swipeable position="bottom">
-            <ons-tab page="tab1.html" label="About" icon="fa-info-circle">
+          <ons-tabbar swipeable position="bottom" id="tabs">
+            <ons-tab page="tab1.html" active="true" class="tab">
+				<ons-icon size="20px" icon="fa-info-circle"></ons-icon>
+				<span style="font-size: 15px;">About</span>
             </ons-tab>
-            <ons-tab page="tab2.html" label="Walk" icon="fa-walking"> </ons-tab>
-            <ons-tab page="tab3.html" label="Read" icon="fa-book"> </ons-tab>
-            <ons-tab page="tab4.html" label="Face" icon="md-face"> </ons-tab>
+            <ons-tab page="tab2.html" class="tab">
+				<ons-icon size="20px" icon="fa-walking"></ons-icon>
+				<span style="font-size: 15px;">Walk</span>
+			</ons-tab>
+            <ons-tab page="tab3.html" class="tab">
+				<ons-icon size="20px" icon="fa-book"></ons-icon>
+				<span style="font-size: 15px;">Read</span>
+			</ons-tab>
+            <ons-tab page="tab4.html" class="tab">
+				<ons-icon size="20px" icon="md-face"></ons-icon>
+				<span style="font-size: 15px;">Face</span>
+			</ons-tab>
           </ons-tabbar>
         </ons-page>
 
