@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes,
+		initial-scale=1.0"
+    />
+
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
+    />
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>Tipsrundan</title>
+
+    <style>
+      @import "page.css";
+      body {
+        text-align: center;
+      }
+
+      #my-header {
+        background-image: url("neo.png");
+        background-color: red;
+      }
+    </style>
+
+    <script>
+      // Redirect console if running from Evothings Workbench.
+      if (window.hyper) {
+        console.log = hyper.log;
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="my-page" id="page-default">
+      <div class="my-header">
+        Welcome to Tipsrundan!
+      </div>
+      <div class="my-content">
+        <h1>Each room contains a question with multi-choice answers</h1>
+        <h2>Can you get them all right??</h2>
+      </div>
+    </div>
+
+    <div id="page-feet">
+      <ons-page>
+        <div class="my-header">
+          <h1>This is Konsthallen!</h1>
+        </div>
+        <div id="my-content">
+          <h1>Vilken är världens största Ö?</h1>
+          <ons-list>
+            <ons-list-item id="alt1" class="question">
+              Grönland
+            </ons-list-item>
+
+            <ons-list-item id="alt2" class="question">
+              Madagascar
+            </ons-list-item>
+
+            <ons-list-item id="alt3" class="question">
+              Island
+            </ons-list-item>
+
+            <ons-list-item id="alt4" class="question">
+              Honshu
+            </ons-list-item>
+          </ons-list>
+        </div>
+      </ons-page>
+    </div>
+
+    <div id="page-shoulders">
+      <ons-page>
+        <div class="my-header">
+          <h1>This is Konsthallen!</h1>
+        </div>
+        <div id="my-content">
+          <h1>
+            Vem myntade citatet "
+            <i>
+              Att vara eller att inte vara, det är frågan
+            </i>
+            "
+          </h1>
+          <ons-list>
+            <ons-list-item id="alt1" class="question">
+              Oscar Wilde
+            </ons-list-item>
+
+            <ons-list-item id="alt2" class="question">
+              Winston Churchhill
+            </ons-list-item>
+
+            <ons-list-item id="alt3" class="question">
+              William Shakespeare
+            </ons-list-item>
+
+            <ons-list-item id="alt4" class="question">
+              Aristoteles
+            </ons-list-item>
+          </ons-list>
+        </div>
+      </ons-page>
+    </div>
+
+    <div id="page-face">
+      <ons-page>
+        <div class="my-header" style="background-image: url('neo.png');">
+          <h1>This is Spelhallen!</h1>
+          <h1>Vem spelade <i>Neo</i> i <i>The Matrix</i>?</h1>
+        </div>
+        <div id="my-content">
+          <ons-list>
+            <ons-list-item id="alt1" class="question">
+              Arnold Schwarzenegger
+            </ons-list-item>
+
+            <ons-list-item id="alt2" class="question">
+              Keanu Reeves
+            </ons-list-item>
+
+            <ons-list-item id="alt3" class="question">
+              Samuel L. Jackson
+            </ons-list-item>
+
+            <ons-list-item id="alt4" class="question">
+              Laurence Fishburne
+            </ons-list-item>
+          </ons-list>
+        </div>
+      </ons-page>
+    </div>
+
+    <script src="lib/jquery.js"></script>
+    <script src="cordova.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
