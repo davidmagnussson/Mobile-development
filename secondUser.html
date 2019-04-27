@@ -1,65 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Second User lab 2</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <!-- CDN for PubNub -->
-    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js"></script>
+    <title>Labb 4</title>
+
+    <style>
+        /* @import "ui/css/evothings-app.css"; */
+    </style>
 
     <script>
-        document.getElementById("firstpage").style.display = "block";
-        document.getElementById("chatroom").style.display = "none";
-        const username;
+    // Redirect console.log to Evothings Workbench.
+    // if (window.hyper && window.hyper.log) {
+    //   console.log = hyper.log;
+    // }
+    </script>
+
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js"></script>
+    <!-- <script src="libs/jquery/jquery.js"></script> -->
+
+    <!-- Instantiate PubNub -->
+
+    <script type="text/javascript">
+        // $("#firstpage").show();
+        // $("#chatroom").hide();
+        let username = "UNKNOWN";
 
         enterChatroom = (e) => {
             e.preventDefault();
             username = document.getElementById("username").value;
-            document.getElementById("firstpage").style.display = "none";
-            document.getElementById("chatroom").style.display = "block";
+            // $("#firstpage").hide();
+            // $("#chatroom").show();
         }
 
         var pubnub = new PubNub({
             publishKey: "pub-c-c42f11f2-1108-438a-ae06-bfe3787a8131",
+
             subscribeKey: "sub-c-ca7b08c8-67f5-11e9-81d5-56c3556875f9"
         });
 
-        // Lyssnar/Prenumererar på kanal "Labb 4"
+
+        // Subscribe to the demo_tutorial channel pubnub
+        pubnub.addListener({
+            message: function (message) {
+                let newMessage = document.createElement('p');
+                newMessage.innerHTML = "From: " + message.message.from + "<br />" + message.message.message;
+                document.getElementById("messages").appendChild(newMessage);
+                // document.getElementById("message").innerHTML = message_array;
+                // document.getElementById("publisher").innerHTML = message.message.from;
+            }
+        });
+
         pubnub.subscribe({
             channels: ["Labb 4"]
         });
 
-        pubnub.addListener({
-            message: function (message) {
-                let newElement = document.createElement('p');
-                newElement.innerHTML = "From: " + message.message.from + "<br />" + message.message.message;
-                document.getElementById("messages").appendChild(newMessage);
-            }
-        });
+        sendMessage = (e) => {
+            // Publish a simple message to the “demo_tutorial” channel pubnub:
+            e.preventDefault();
+            // let from = document.getElementById("from").value;
+            let message = document.getElementById("new-message").value;
+            pubnub.publish({
+                message: { "from": username, "message": message },
+                channel: "Labb 4"
+            });
+        }
     </script>
 </head>
 
-<body>
-    <div id="firstPage">
+<body ontouchstart="">
+
+    <!-- <p>This is the publisher:</p>
+  <p id="publisher"></p>
+  <p>This is the current messages:</p>
+  <p id="message"></p> -->
+    <div id="firstpage">
         <h1>Welcome to Chat Along</h1>
-        <h2>You join channels by pointing your mobilephone towards specific directions. <i>North </i><i>East
-            </i><i>South</i><i>West</i></h2>
+        <h2>You join channels by pointing your mobilephone towards specific directions. <i>North, </i><i>East,
+            </i><i>South, </i><i>West</i></h2>
         <h4>Please enter username to start chatting</h4>
         <form onsubmit="enterChatroom(event)">
             <input type="text" placeholder="Enter username!" id="username" name="username" />
             <button type="submit">Select</button>
-        </form>>
+        </form>
     </div>
 
     <div id="chatroom">
-        <h2>This is room <i>North</i></h2>
-        <p>Messages:</p>
-        <div id="messages">
+        <h2>Messages:</h2>
+        <form onsubmit="sendMessage(event)">
+            <!-- <input type="text" placeholder="Who is sending the message?" name="from" id="from" /> -->
+            <input type="text" placeholder="Write message!" name="new-message" id="new-message" />
+            <button type="submit">
+                Send message!
+            </button>
+        </form>
+
+        <div id="messageDiv">
+            <p id="messages"></p>
         </div>
     </div>
+
+    <!-- <script src="cordova.js"></script>
+    <script src="libs/evothings/evothings.js"></script>
+    <script src="libs/evothings/ui/ui.js"></script> -->
 </body>
 
 </html>
