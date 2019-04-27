@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Second User lab 2</title>
+
+    <!-- CDN for PubNub -->
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js"></script>
+
+    <script>
+        document.getElementById("firstpage").style.display = "block";
+        document.getElementById("chatroom").style.display = "none";
+        const username;
+
+        enterChatroom = (e) => {
+            e.preventDefault();
+            username = document.getElementById("username").value;
+            document.getElementById("firstpage").style.display = "none";
+            document.getElementById("chatroom").style.display = "block";
+        }
+
+        var pubnub = new PubNub({
+            publishKey: "pub-c-c42f11f2-1108-438a-ae06-bfe3787a8131",
+            subscribeKey: "sub-c-ca7b08c8-67f5-11e9-81d5-56c3556875f9"
+        });
+
+        // Lyssnar/Prenumererar på kanal "Labb 4"
+        pubnub.subscribe({
+            channels: ["Labb 4"]
+        });
+
+        pubnub.addListener({
+            message: function (message) {
+                let newElement = document.createElement('p');
+                newElement.innerHTML = "From: " + message.message.from + "<br />" + message.message.message;
+                document.getElementById("messages").appendChild(newMessage);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="firstPage">
+        <h1>Welcome to Chat Along</h1>
+        <h2>You join channels by pointing your mobilephone towards specific directions. <i>North </i><i>East
+            </i><i>South</i><i>West</i></h2>
+        <h4>Please enter username to start chatting</h4>
+        <form onsubmit="enterChatroom(event)">
+            <input type="text" placeholder="Enter username!" id="username" name="username" />
+            <button type="submit">Select</button>
+        </form>>
+    </div>
+
+    <div id="chatroom">
+        <h2>This is room <i>North</i></h2>
+        <p>Messages:</p>
+        <div id="messages">
+        </div>
+    </div>
+</body>
+
+</html>
