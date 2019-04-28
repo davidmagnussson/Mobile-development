@@ -74,9 +74,11 @@
           channels: ["West"]
         });
         //
+        document.getElementById("output").innerHTML = input;
+        document.getElementById("output1").innerHTML = { input };
         //Subbar till specifik kanal
         pubnub.subscribe({
-          channels: [input]
+          channels: ["Test"]
         });
       };
 
@@ -129,13 +131,13 @@
           event.alpha.toFixed([0]) > 225 &&
           event.alpha.toFixed([0]) < 314
         ) {
-          direction.innerHTML = "East"; //asdkasdjkasjd
+          direction.innerHTML = "East";
           subscribeToChannel("East");
         }
       }
 
       if (window.DeviceOrientationEvent) {
-        // alert("Works!"); d
+        // alert("Works!");
         window.addEventListener(
           "deviceorientation",
           deviceOrientationListener,
@@ -166,7 +168,8 @@
         <button type="submit">Select</button>
       </form>
 
-      <pre class="output">heh4</pre>
+      <pre id="output">heh4</pre>
+      <pre id="output1">heh4.1</pre>
       <p id="orientation"></p>
       <p id="direction"></p>
     </div>
