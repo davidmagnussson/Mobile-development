@@ -73,7 +73,7 @@
 
         document.getElementById("active_room").innerHTML = direction;
 
-        //Subbar till specifik kanal
+        //Subbar till specifik kanals
         pubnub.subscribe({
           channels: [direction]
         });
