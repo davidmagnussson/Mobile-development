@@ -35,6 +35,9 @@
       enterChatroom = e => {
         e.preventDefault();
         username = document.getElementById("username").value;
+        document.getElementById("name").innerText = username;
+        document.getElementById("chatroom").style.display = "block";
+        document.getElementById("firstpage").style.display = "none";
 
         // $("#firstpage").hide();
         // $("#chatroom").show();
@@ -55,7 +58,7 @@
             message.message.from +
             "<br />" +
             message.message.message;
-          console.log(message);
+
           document.getElementById("messages").appendChild(newMessage);
           // document.getElementById("message").innerHTML = message_array;
           // document.getElementById("publisher").innerHTML = message.message.from;
@@ -66,7 +69,6 @@
         // Unsubbar till alla kanaler
         var channels = ["North", "East", "West", "South"];
         let result = channels.filter(index => index != direction);
-        document.getElementById("test1").innerHTML = result;
 
         pubnub.unsubscribe({
           channels: result
@@ -160,12 +162,12 @@
         <button type="submit">Select</button>
       </form>
 
-      <pre>version 19</pre>
+      <pre>version 21</pre>
       <p id="orientation"></p>
     </div>
 
     <div id="chatroom">
-      <p id="test1">test1</p>
+      <h1>Welcome: <span id="name"></span>!</h1>
       <!--dssass -->
       <div id="room">
         <h2>You're now in room: <i id="active_room"></i></h2>
@@ -190,5 +192,8 @@
     </div>
 
     <script src="cordova.js"></script>
+    <script>
+      document.getElementById("chatroom").style.display = "none";
+    </script>
   </body>
 </html>
