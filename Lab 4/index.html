@@ -80,6 +80,7 @@
       // Publish a simple message to the “demo_tutorial” channel pubnub:
       e.preventDefault();
       let direction = document.getElementById("active_room").innerText;
+      document.getElementById("room").innerText = direction;
       let message = document.getElementById("new-message").value;
       pubnub.publish({
         message: { "from": username, "message": message },
@@ -132,7 +133,7 @@
       <input type="text" placeholder="Enter username!" id="username" name="username" />
       <button type="submit">Select</button>
       <!-- ssss -->
-      <p>Version 9</p>
+      <p>Version 10</p>
       <p>Send message to: <i id="room"></i></p>
       <p id="orientation"></p>
       <p id="heading"></p>
