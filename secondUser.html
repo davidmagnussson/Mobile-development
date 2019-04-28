@@ -72,17 +72,17 @@
 
     <!-- Script för navigering av mobil, koodianater -->
     <script>
-        // var output = document.querySelector('.output');
+        var output = document.querySelector('.output');
         // // Get event data
-        // function handleOrientation(event) {
-        //     var alpha = event.alpha; //z axis rotation [0,360)
-        //     var beta = event.beta; //x axis rotation [-180, 180]
-        //     var gamma = event.gamma; //y axis rotation [-90, 90]
-        //     output.innerHTML = alpha.toFixed([0]);
-        //     output.innerHTML = "utbyte";
+        function deviceOrientationListener(event) {
+            // var alpha = event.alpha; //z axis rotation [0,360)
+            // var beta = event.beta; //x axis rotation [-180, 180]
+            // var gamma = event.gamma; //y axis rotation [-90, 90]
+            // output.innerHTML = alpha.toFixed([0]);
+            output.innerHTML = "utbyte";
 
-        //     // tesss
-        // }
+            // tesss
+        }
 
         // // window.addEventListener('deviceorientation', handleOrientation);
         // window.addEventListener('DeviceOrientationEvent', function (event) {
@@ -91,10 +91,9 @@
         // });
 
         if (window.DeviceOrientationEvent) {
-            alert("Works!");
-            window.addEventListener("orientationchange", function (event) {
-                alert("changed!");
-            });
+            // alert("Works!");
+            window.addEventListener("deviceorientation", deviceOrientationListener);
+
         } else {
             alert("Doesn't work!");
         }
