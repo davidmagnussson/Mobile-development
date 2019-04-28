@@ -62,10 +62,8 @@
       subscribeToChannel = input => {
         // Unsubbar till alla kanaler
         //asjdkasdjk
-        pubnub.unsubscribe({
-          channels: ["North"]
-        });
-        pubnub.unsubscribe({
+
+        /*pubnub.unsubscribe({
           channels: ["East"]
         });
         pubnub.unsubscribe({
@@ -73,7 +71,7 @@
         });
         pubnub.unsubscribe({
           channels: ["West"]
-        });
+        });*/
         //
         document.getElementById("output").innerHTML = input;
         document.getElementById("output1").innerHTML = { input };
