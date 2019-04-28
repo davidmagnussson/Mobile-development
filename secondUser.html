@@ -76,6 +76,7 @@
         document.getElementById("output").innerHTML = input;
 
         //Subbar till specifik kanal
+
         pubnub.subscribe({
           channels: ["Test"]
         });
@@ -85,13 +86,13 @@
         // Publish a simple message to the “demo_tutorial” channel pubnub:
         e.preventDefault();
         // let from = document.getElementById("from").value;
-        let direction = document.getElementById("output").value;
+        let direction = document.getElementById("output").innerText;
         let message = document.getElementById("new-message").value;
-        document.getAnimations("david").innerHTML = direction;
+        document.getElementById("david").innerHTML = direction;
 
         pubnub.publish({
           message: { from: username, message: message },
-          channel: "Test"
+          channel: ["Test"]
         });
       };
     </script>
@@ -170,7 +171,7 @@
         <button type="submit">Select</button>
       </form>
 
-      <pre>version 4</pre>
+      <pre>version 5</pre>
       <pre id="output">heh1</pre>
       <p id="david">david david</p>
       <p id="orientation"></p>
