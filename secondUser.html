@@ -80,15 +80,10 @@
             // var gamma = event.gamma; //y axis rotation [-90, 90]
             // output.innerHTML = alpha.toFixed([0]);
             output.innerHTML = "utbyte";
-
-            // tesss
+            let a = document.createElement('p');
+            a.innerHTML = "Change";
+            document.getElementById("test").appendChild(a);
         }
-
-        // // window.addEventListener('deviceorientation', handleOrientation);
-        // window.addEventListener('DeviceOrientationEvent', function (event) {
-        //     // alert(event.alpha.toFixed([0]) + ' : ' + event.beta.toFixed([0]) + ' : ' + event.gamma.toFixed([0]));
-        //     alert("test");
-        // });
 
         if (window.DeviceOrientationEvent) {
             // alert("Works!");
@@ -128,6 +123,9 @@
         </form>
 
         <pre class=output>sss</pre>
+        <div id="test">
+
+        </div>
 
     </div>
 
