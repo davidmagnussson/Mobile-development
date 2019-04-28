@@ -105,28 +105,22 @@
           "<br/> Gamma: " +
           event.gamma.toFixed([0]);
 
-        var direction = document.getElementById("direction");
-
         if (event.alpha.toFixed([0]) > 315 || event.alpha.toFixed([0]) < 45) {
-          direction.innerHTML = "North";
           subscribeToChannel("North");
         } else if (
           event.alpha.toFixed([0]) > 45 &&
           event.alpha.toFixed([0]) < 135
         ) {
-          direction.innerHTML = "West";
           subscribeToChannel("West");
         } else if (
           event.alpha.toFixed([0]) > 135 &&
           event.alpha.toFixed([0]) < 225
         ) {
-          direction.innerHTML = "South";
           subscribeToChannel("South");
         } else if (
           event.alpha.toFixed([0]) > 225 &&
           event.alpha.toFixed([0]) < 314
         ) {
-          direction.innerHTML = "East";
           subscribeToChannel("East");
         }
       }
@@ -163,13 +157,15 @@
         <button type="submit">Select</button>
       </form>
 
-      <pre>version 10</pre>
-
+      <pre>version 11</pre>
+      <pre id="output">heh1</pre>
+      <p id="david">david david</p>
       <p id="orientation"></p>
+      <p id="direction"></p>
     </div>
 
     <div id="chatroom">
-      <!--dkassjdkdasjsdk -->
+      <!--dkasjdkdasjsdk -->
       <div id="room">
         <p>You're now in room: <i id="active_room"></i></p>
       </div>
