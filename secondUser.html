@@ -81,11 +81,11 @@
         });
       };
 
-      sendMessage = (e, direction) => {
+      sendMessage = e => {
         // Publish a simple message to the “demo_tutorial” channel pubnub:
         e.preventDefault();
         // let from = document.getElementById("from").value;
-        document.getElementById("david").innerHTML = direction;
+        let direction = document.getElementById("output").value;
         let message = document.getElementById("new-message").value;
         pubnub.publish({
           message: { from: username, message: message },
@@ -168,18 +168,16 @@
         <button type="submit">Select</button>
       </form>
 
-      <pre>version 2</pre>
+      <pre>version 3</pre>
       <pre id="output">heh1</pre>
-      <p id="david"></p>
+      <p id="david">jaksdjaskd</p>
       <p id="orientation"></p>
       <p id="direction"></p>
     </div>
 
     <div id="chatroom">
       <h2>Messages:</h2>
-      <form
-        onsubmit="sendMessage(event, document.getElementById('output').value)"
-      >
+      <form onsubmit="sendMessage(event)">
         <!-- <input type="text" placeholder="Who is sending the message?" name="from" id="from" /> -->
         <input
           type="text"
