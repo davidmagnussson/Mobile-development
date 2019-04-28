@@ -53,23 +53,26 @@
     });
 
     subscribeToChannel = direction => {
-      // Unsubbar till alla kanaler
-      var channels = ["North", "East", "West", "South"];
-      let result = channels.filter(index => index != direction);
+      // // Unsubbar till alla kanaler
+      // var channels = ["North", "East", "West", "South"];
+      // let result = channels.filter(index => index != direction);
 
-      pubnub.unsubscribe({
-        channels: result
-      });
+      // pubnub.unsubscribe({
+      //   channels: result
+      // });
 
       document.getElementById("active_room").innerHTML = direction;
       document.getElementById("subroom").innerHTML = direction;
 
-      //Subbar till specifik kanal
-      pubnub.subscribe({
-        channels: ["direction"]
-      });
+      // //Subbar till specifik kanal
+      // pubnub.subscribe({
+      //   channels: ["direction"]
+      // });
     };
 
+    pubnub.subscribe({
+      channels: ["direction"]
+    });
     sendMessage = (e) => {
       // Publish a simple message to the “demo_tutorial” channel pubnub:
       e.preventDefault();
