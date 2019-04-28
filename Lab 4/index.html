@@ -82,7 +82,7 @@
       let direction = document.getElementById("active_room").innerText;
       document.getElementById("room").innerText = direction;
 
-      // testing
+      // FUNGERAR DETTA?-----------
       var allChannels = ["North", "East", "West", "South"];
       let result = allChannels.filter(index => index != direction);
 
@@ -93,7 +93,7 @@
       pubnub.subscribe({
         channels: [direction]
       });
-      // testing
+      // FUNGERAR DETTA?----------
 
       let message = document.getElementById("new-message").value;
       pubnub.publish({
