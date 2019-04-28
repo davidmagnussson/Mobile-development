@@ -54,10 +54,27 @@
             }
         });
 
-        pubnub.subscribe({
-            channels: ["Labb 4"]
+        subscribeToChannel = (input) => {
+            // Unsubbar till alla kanaler
+            pubnub.unsubscribe({
+                channels: ['North']
+            });
+            pubnub.unsubscribe({
+                channels: ['East']
+            });
+            pubnub.unsubscribe({
+                channels: ['South']
+            });
+            pubnub.unsubscribe({
+                channels: ['West']
+            });
 
-        });
+            //Subbar till specifik kanal
+            pubnub.subscribe({
+                channels: ["Labb 4"]
+
+            });
+        };
 
         sendMessage = (e) => {
             // Publish a simple message to the “demo_tutorial” channel pubnub:
