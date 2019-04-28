@@ -84,7 +84,10 @@
             // tess
         }
 
-        window.addEventListener('deviceorientation', handleOrientation);
+        // window.addEventListener('deviceorientation', handleOrientation);
+        window.addEventListener('deviceorientation', function (event) {
+            output.innerHTML = event.alpha.toFixed([0]) + ' : ' + event.beta.toFixed([0]) + ' : ' + event.gamma.toFixed([0]);
+        });
 
         //Check if absolute values have been sent
         // if (typeof event.webkitCompassHeading !== "undefined") {
