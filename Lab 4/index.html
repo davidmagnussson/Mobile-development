@@ -28,7 +28,7 @@
     // $("#firstpage").show();
     // $("#chatroom").hide();
     let username = "UNKNOWN";
-    let activeRoom = "";
+    let activeRoom = "north";
 
     enterChatroom = (e) => {
       e.preventDefault();
@@ -73,7 +73,7 @@
     };
 
     pubnub.subscribe({
-      channels: ["activeRoom"]
+      channels: [activeRoom]
     });
 
     sendMessage = (e) => {
@@ -84,7 +84,7 @@
       let message = document.getElementById("new-message").value;
       pubnub.publish({
         message: { "from": username, "message": message },
-        channel: ["activeRoom"]
+        channel: [activeRoom]
       });
     }
   </script>
@@ -133,7 +133,7 @@
       <input type="text" placeholder="Enter username!" id="username" name="username" />
       <button type="submit">Select</button>
       <!-- ssss -->
-      <p>Version 1</p>
+      <p>Version 2</p>
       <p>Send message to: <i id="room"></i></p>
       <p>Subscribe to: <i id="subroom"></i></p>
 
