@@ -1,41 +1,150 @@
 <!DOCTYPE html>
 <html>
 
-<body>
-    <canvas id="myCanvas" width="360" height="450" style="border:1px solid #d3d3d3;">
-    </canvas>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Labb 4</title>
+
+    <style>
+        /* @import "ui/css/evothings-app.css"; */
+    </style>
+
     <script>
+    // Redirect console.log to Evothings Workbench.
+    // if (window.hyper && window.hyper.log) {
+    //   console.log = hyper.log;
+    // }
+    </script>
+
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js"></script>
+    <!-- <script src="libs/jquery/jquery.js"></script> -->
+
+    <!-- Instantiate PubNub -->
+
+    <script type="text/javascript">
+        // $("#firstpage").show();
+        // $("#chatroom").hide();
+        let username = "UNKNOWN";
+
+        enterChatroom = (e) => {
+            e.preventDefault();
+            username = document.getElementById("username").value;
+            // $("#firstpage").hide();
+            // $("#chatroom").show();
+        }
+
+        var pubnub = new PubNub({
+            publishKey: "pub-c-c42f11f2-1108-438a-ae06-bfe3787a8131",
+
+            subscribeKey: "sub-c-ca7b08c8-67f5-11e9-81d5-56c3556875f9"
+        });
+
+
+        // Subscribe to the demo_tutorial channel pubnub
+        pubnub.addListener({
+            message: function (message) {
+                let newMessage = document.createElement('p');
+                newMessage.innerHTML = "From: " + message.message.from + "<br />" + message.message.message;
+                document.getElementById("messages").appendChild(newMessage);
+                // document.getElementById("message").innerHTML = message_array;
+                // document.getElementById("publisher").innerHTML = message.message.from;
+            }
+        });
+
+        pubnub.subscribe({
+            channels: ["Labb 4"]
+        });
+
+        sendMessage = (e) => {
+            // Publish a simple message to the “demo_tutorial” channel pubnub:
+            e.preventDefault();
+            // let from = document.getElementById("from").value;
+            let message = document.getElementById("new-message").value;
+            pubnub.publish({
+                message: { "from": username, "message": message },
+                channel: "Labb 4"
+            });
+        }
+    </script>
+
+    <!-- Script för navigering av mobil, koodianater -->
+    <script>
+        var output = document.querySelector('.output');
+        // // Get event data
         function deviceOrientationListener(event) {
-            var c = document.getElementById("myCanvas");
-            var ctx = c.getContext("2d");
-
-            ctx.clearRect(0, 0, c.width, c.height);
-            ctx.fillStyle = "#FF7777";
-            ctx.font = "14px Verdana";
-            ctx.fillText("Alpha: " + Math.Round(event.alpha), 10, 20);
-            ctx.beginPath();
-            ctx.moveTo(180, 75);
-            ctx.lineTo(210, 75);
-            ctx.arc(180, 75, 60, 0, event.alpha * Math.PI / 180);
-            ctx.fill();
-
-            ctx.fillStyle = "#FF6600";
-            ctx.fillText("Beta: " + Math.round(event.beta), 10, 140);
-            ctx.beginPath();
-            ctx.fillRect(180, 150, event.beta, 90);
-
-            ctx.fillStyle = "#FF0000";
-            ctx.fillText("Gamma: " + Math.round(event.gamma), 10, 270);
-            ctx.beginPath();
-            ctx.fillRect(90, 340, 180, event.gamma);
+            // var alpha = event.alpha; //z axis rotation [0,360)
+            // var beta = event.beta; //x axis rotation [-180, 180]
+            // var gamma = event.gamma; //y axis rotation [-90, 90]
+            // output.innerHTML = alpha.toFixed([0]);
+            // output.innerHTML = "utbyt";
+            let a = document.createElement('p');
+            a.innerHTML = "Change";
+            document.getElementById("test").appendChild(a);
         }
 
         if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", deviceOrientationListener);
+            // alert("Works!");
+            window.addEventListener("deviceorientation", function (event) {
+                // alpha: rotation around z-axis
+                // var rotateDegrees = event.alpha;
+                // gamma: left to right
+                // var leftToRight = event.gamma;
+                // beta: front back motion
+                // var frontToBack = event.beta;
+
+                alert("test");
+
+                // handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+            }, true);
+
         } else {
-            alert("Sorry, your browser doesn't support Deviice Orientation");
+            alert("Doesn't work!");
         }
+
     </script>
+    <!-- Slut på koden med navigeringe, (del 2 i labben) -->
+</head>
+
+<body ontouchstart="">
+
+    <div id="firstpage">
+        <h1>Welcome to Chat Along</h1>
+        <h2>You join channels by pointing your mobilephone towards specific directions. <i>North, </i><i>East,
+            </i><i>South, </i><i>West</i></h2>
+        <h4>Please enter username to start chatting</h4>
+        <form onsubmit="enterChatroom(event)">
+            <input type="text" placeholder="Enter username!" id="username" name="username" />
+            <button type="submit">Select</button>
+        </form>
+
+        <pre class=output>a</pre>
+        <div id="test">
+
+        </div>
+
+    </div>
+
+    <div id="chatroom">
+        <h2>Messages:</h2>
+        <form onsubmit="sendMessage(event)">
+            <!-- <input type="text" placeholder="Who is sending the message?" name="from" id="from" /> -->
+            <input type="text" placeholder="Write message!" name="new-message" id="new-message" />
+            <button type="submit">
+                Send message!
+            </button>
+        </form>
+
+        <div id="messageDiv">
+            <p id="messages"></p>
+        </div>
+    </div>
+
+    <!-- <script src="cordova.js"></script>
+                <script src="libs/evothings/evothings.js"></script>
+                <script src="libs/evothings/ui/ui.js"></script> -->
 </body>
 
 </html>
