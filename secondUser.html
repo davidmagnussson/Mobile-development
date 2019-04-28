@@ -59,6 +59,10 @@
         }
       });
 
+      pubnub.subscribe({
+        channels: ["Test"]
+      });
+
       subscribeToChannel = input => {
         // Unsubbar till alla kanaler
 
@@ -75,9 +79,6 @@
         document.getElementById("output").innerHTML = input;
         document.getElementById("output1").innerHTML = { input };
         //Subbar till specifik kanal
-        pubnub.subscribe({
-          channels: ["Test"]
-        });
       };
 
       sendMessage = e => {
