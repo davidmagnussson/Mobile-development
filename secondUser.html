@@ -78,6 +78,8 @@
             var beta = event.beta; //x axis rotation [-180, 180]
             var gamma = event.gamma; //y axis rotation [-90, 90]
 
+            console.log("Alpha: " + alpha + ", Beta: " + beta + ", Gamma: " + gamma);
+
             //Check if absolute values have been sent
             if (typeof event.webkitCompassHeading != "undefined") {
                 alpha = event.webkitCompassHeading; //for iOS devices
