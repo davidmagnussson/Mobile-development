@@ -94,7 +94,6 @@
 
     <!-- Script för navigering av mobil, koodianater -->
     <script>
-      var output = document.querySelector(".output");
       // // Get event data
       function deviceOrientationListener(event) {
         let element = document.getElementById("orientation");
@@ -113,21 +112,25 @@
 
         if (event.alpha.toFixed([0]) > 315 && event.alpha.toFixed([0]) < 45) {
           direction.innerHTML = "North";
+          alert("north!");
         } else if (
           event.alpha.toFixed([0]) > 46 &&
           event.alpha.toFixed([0]) < 135
         ) {
           direction.innerHTML = "East";
+          alert("East!");
         } else if (
           event.alpha.toFixed([0]) > 136 &&
           event.alpha.toFixed([0]) < 225
         ) {
           direction.innerHTML = "South";
+          alert("South!");
         } else if (
           event.alpha.toFixed([0]) > 226 &&
           event.alpha.toFixed([0]) < 314
         ) {
           direction.innerHTML = "West";
+          alert("West!");
         }
       } // adsajskdhsajdh
 
