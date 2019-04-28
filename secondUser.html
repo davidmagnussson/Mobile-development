@@ -30,6 +30,7 @@
       // $("#firstpage").show();
       // $("#chatroom").hide();
       let username = "UNKNOWN";
+      let test = "";
 
       enterChatroom = e => {
         e.preventDefault();
@@ -59,13 +60,9 @@
         }
       });
 
-      pubnub.subscribe({
-        channels: ["Test"]
-      });
-
       subscribeToChannel = input => {
         // Unsubbar till alla kanaler
-
+        test = input;
         /*pubnub.unsubscribe({
           channels: ["East"]
         });
@@ -79,6 +76,9 @@
         document.getElementById("output").innerHTML = input;
         document.getElementById("output1").innerHTML = { input };
         //Subbar till specifik kanal
+        pubnub.subscribe({
+          channels: ["Test"]
+        });
       };
 
       sendMessage = e => {
@@ -88,7 +88,7 @@
         let message = document.getElementById("new-message").value;
         pubnub.publish({
           message: { from: username, message: message },
-          channel: "Labb 4"
+          channel: test
         });
       };
     </script>
@@ -167,7 +167,7 @@
         <button type="submit">Select</button>
       </form>
 
-      <pre>version 2</pre>
+      <pre>version</pre>
       <pre id="output">heh1</pre>
       <pre id="output1">heh1.1</pre>
       <p id="orientation"></p>
