@@ -110,7 +110,7 @@
 
         var direction = document.getElementById("direction");
 
-        if (event.alpha.toFixed([0]) > 315 && event.alpha.toFixed([0]) < 45) {
+        if (event.alpha.toFixed([0]) > 315 || event.alpha.toFixed([0]) < 45) {
           direction.innerHTML = "North";
           alert("north!");
         } else if (
