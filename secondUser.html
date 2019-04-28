@@ -76,7 +76,7 @@
 
         //Subbar till specifik kanal
         pubnub.subscribe({
-          channels: ["Labb 4"]
+          channels: [input]
         });
       };
 
@@ -112,21 +112,25 @@
 
         if (event.alpha.toFixed([0]) > 315 || event.alpha.toFixed([0]) < 45) {
           direction.innerHTML = "North";
+          subscribeToChannel("North");
         } else if (
           event.alpha.toFixed([0]) > 45 &&
           event.alpha.toFixed([0]) < 135
         ) {
-          direction.innerHTML = "East";
+          direction.innerHTML = "West";
+          subscribeToChannel("West");
         } else if (
           event.alpha.toFixed([0]) > 135 &&
           event.alpha.toFixed([0]) < 225
         ) {
           direction.innerHTML = "South";
+          subscribeToChannel("South");
         } else if (
           event.alpha.toFixed([0]) > 225 &&
           event.alpha.toFixed([0]) < 314
         ) {
-          direction.innerHTML = "West"; //asdkasdjkasjd
+          direction.innerHTML = "East"; //asdkasdjkasjd
+          subscribeToChannel("East");
         }
       }
 
