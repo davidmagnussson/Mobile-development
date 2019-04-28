@@ -88,11 +88,12 @@
         if (window.DeviceOrientationEvent) {
             // alert("Works!");
             window.addEventListener("deviceorientation", function (event) {
-                var alpha = event.alpha; //z axis rotation [0,360)
-                var beta = event.beta; //x axis rotation [-180, 180]
-                var gamma = event.gamma; //y axis rotation [-90, 90]
-                output.innerHTML = alpha.toFixed([0]);
-                output.innerHTML = "Alpha: " + alpha + ", Beta: " + beta + ", Gamma: " + gamma;
+                // var alpha = event.alpha; //z axis rotation [0,360)
+                // var beta = event.beta; //x axis rotation [-180, 180]
+                // var gamma = event.gamma; //y axis rotation [-90, 90]
+                // output.innerHTML = alpha.toFixed([0]);
+                // output.innerHTML = "Alpha: " + alpha + ", Beta: " + beta + ", Gamma: " + gamma;
+                alert("test");
             }, true);
 
         } else {
