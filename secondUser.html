@@ -92,6 +92,9 @@
 
         if (window.DeviceOrientationEvent) {
             alert("Works!");
+            window.addEventListener("orientationchange", function (event) {
+                alert("changed");
+            });
         } else {
             alert("Doesn't work!");
         }
