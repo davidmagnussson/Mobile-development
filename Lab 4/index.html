@@ -74,7 +74,7 @@
 
     //Subbar till specifik kanal
     pubnub.subscribe({
-      channel: ["activeRoom"]
+      channels: ["activeRoom"]
     });
     sendMessage = (e) => {
       // Publish a simple message to the “demo_tutorial” channel pubnub:
@@ -132,7 +132,7 @@
       <input type="text" placeholder="Enter username!" id="username" name="username" />
       <button type="submit">Select</button>
       <!-- ssss -->
-      <p>Version 19</p>
+      <p>Version 20</p>
       <p>Send message to: <i id="room"></i></p>
       <p>Subscribe to: <i id="subroom"></i></p>
 
