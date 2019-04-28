@@ -82,12 +82,11 @@
             output.innerHTML = "Alpha: " + alpha + ", Beta: " + beta + ", Gamma: " + gamma;
             // let a = document.createElement('p');
             // a.innerHTML = "Change";
-            // document.getElementById("tes").appendChild(a);
+            // document.getElementById("es").appendChild(a);
         }
 
         if (window.DeviceOrientationEvent) {
             window.addEventListener("deviceorientation", deviceOrientationListener, true);
-
         } else {
             alert("Doesn't work!");
         }
