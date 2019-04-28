@@ -49,8 +49,6 @@
         let newMessage = document.createElement('p');
         newMessage.innerHTML = "From: " + message.message.from + "<br />" + message.message.message;
         document.getElementById("messages").appendChild(newMessage);
-        // document.getElementById("message").innerHTML = message_array;
-        // document.getElementById("publisher").innerHTML = message.message.from;
       }
     });
 
@@ -66,10 +64,9 @@
       document.getElementById("active_room").innerHTML = direction;
       document.getElementById("subroom").innerHTML = direction;
 
-
       //Subbar till specifik kanal
       pubnub.subscribe({
-        channels: [direction]
+        channels: ["direction"]
       });
     };
 
@@ -81,7 +78,7 @@
       let message = document.getElementById("new-message").value;
       pubnub.publish({
         message: { "from": username, "message": message },
-        channel: [direction]
+        channel: ["direction"]
       });
     }
   </script>
@@ -129,8 +126,8 @@
     <form onsubmit="enterChatroom(event)">
       <input type="text" placeholder="Enter username!" id="username" name="username" />
       <button type="submit">Select</button>
-      <!-- sssss -->
-      <p>Version 11</p>
+      <!-- ssss -->
+      <p>Version 12</p>
       <p>Send message to: <i id="room"></i></p>
       <p>Subscribe to: <i id="subroom"></i></p>
       <p id="orientation"></p>
