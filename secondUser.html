@@ -77,7 +77,7 @@
 
         //Subbar till specifik kanal
         pubnub.subscribe({
-          channels: input
+          channels: ["Test"]
         });
       };
 
@@ -87,9 +87,11 @@
         // let from = document.getElementById("from").value;
         let direction = document.getElementById("output").value;
         let message = document.getElementById("new-message").value;
+        document.getAnimations("david").innerHTML = direction;
+
         pubnub.publish({
           message: { from: username, message: message },
-          channel: direction
+          channel: "Test"
         });
       };
     </script>
@@ -170,7 +172,7 @@
 
       <pre>version 4</pre>
       <pre id="output">heh1</pre>
-      <p id="david">jaksdjaskd</p>
+      <p id="david">david david</p>
       <p id="orientation"></p>
       <p id="direction"></p>
     </div>
