@@ -79,9 +79,12 @@
             var beta = event.beta; //x axis rotation [-180, 180]
             var gamma = event.gamma; //y axis rotation [-90, 90]
             output.innerHTML = alpha.toFixed([0]);
+            output.innerHTML = "utbytt";
+
             // tess
         }
 
+        window.addEventListener('deviceorientation', handleOrientation);
 
         //Check if absolute values have been sent
         // if (typeof event.webkitCompassHeading !== "undefined") {
@@ -95,8 +98,6 @@
         //     var heading = 360 - alpha; //heading [0, 360)
         //     document.getElementById("heading").innerHTML = heading.toFixed([0]);
         // }
-
-        window.addEventListener('deviceorientation', handleOrientation);
 
     </script>
     <!-- Slut på koden med navigeringe, (del 2 i labben) -->
