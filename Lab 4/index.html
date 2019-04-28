@@ -72,19 +72,24 @@
       // });
     };
 
-    pubnub.subscribe({
-      channels: [activeRoom]
-    });
+    // pubnub.subscribe({
+    //   channels: [activeRoom]
+    // });
 
     sendMessage = (e) => {
       // Publish a simple message to the “demo_tutorial” channel pubnub:
       e.preventDefault();
       let direction = document.getElementById("active_room").innerText;
       document.getElementById("room").innerText = direction;
+
+      pubnub.subscribe({
+        channels: [direction]
+      });
+
       let message = document.getElementById("new-message").value;
       pubnub.publish({
         message: { "from": username, "message": message },
-        channel: [activeRoom]
+        channel: [direction]
       });
     }
   </script>
@@ -100,18 +105,17 @@
       element.innerHTML = "Alpha: " + event.alpha.toFixed([0]) + "<br/> Beta: " + event.beta.toFixed([0]) + "<br/> Gamma: " + event.gamma.toFixed([0]);
 
       if (alpha.toFixed([0]) > 315 || alpha.toFixed([0]) < 45) {
-        subscribeToChannel("north");
+        subscribeToChannel("North");
       } else if (alpha.toFixed([0]) > 45 && alpha.toFixed([0]) < 135) {
-        subscribeToChannel("west");
+        subscribeToChannel("West");
       } else if (alpha.toFixed([0]) > 135 && alpha.toFixed([0]) < 225) {
-        subscribeToChannel("south");
+        subscribeToChannel("South");
       } else if (alpha.toFixed([0]) > 225 && alpha.toFixed([0]) < 314) {
-        subscribeToChannel("east");
+        subscribeToChannel("East");
       }
     }
 
     if (window.DeviceOrientationEvent) {
-      // alert("Works!");
       window.addEventListener("deviceorientation", deviceOrientationListener, true);
 
     } else {
@@ -133,7 +137,7 @@
       <input type="text" placeholder="Enter username!" id="username" name="username" />
       <button type="submit">Select</button>
       <!-- ssss -->
-      <p>Version 5</p>
+      <p>Version 6</p>
       <p>Send message to: <i id="room"></i></p>
       <p>Subscribe to: <i id="subroom"></i></p>
 
