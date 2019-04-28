@@ -62,7 +62,7 @@
 
       subscribeToChannel = input => {
         // Unsubbar till alla kanaler
-        test = input;
+
         /*pubnub.unsubscribe({
           channels: ["East"]
         });
@@ -74,21 +74,22 @@
         });*/
         //dasdasd
         document.getElementById("output").innerHTML = input;
-        document.getElementById("output1").innerHTML = { input };
+
         //Subbar till specifik kanal
         pubnub.subscribe({
-          channels: test
+          channels: input
         });
       };
 
-      sendMessage = e => {
+      sendMessage = (e, direction) => {
         // Publish a simple message to the “demo_tutorial” channel pubnub:
         e.preventDefault();
         // let from = document.getElementById("from").value;
+        document.getElementById("david").innerHTML = direction;
         let message = document.getElementById("new-message").value;
         pubnub.publish({
           message: { from: username, message: message },
-          channel: test
+          channel: direction
         });
       };
     </script>
@@ -167,16 +168,18 @@
         <button type="submit">Select</button>
       </form>
 
-      <pre>version</pre>
+      <pre>version 1</pre>
       <pre id="output">heh1</pre>
-      <pre id="output1">heh1.1</pre>
+      <p id="david"></p>
       <p id="orientation"></p>
       <p id="direction"></p>
     </div>
 
     <div id="chatroom">
       <h2>Messages:</h2>
-      <form onsubmit="sendMessage(event)">
+      <form
+        onsubmit="sendMessage(event, document.getElementById('output').value)"
+      >
         <!-- <input type="text" placeholder="Who is sending the message?" name="from" id="from" /> -->
         <input
           type="text"
