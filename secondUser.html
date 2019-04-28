@@ -75,30 +75,18 @@
         var output = document.querySelector('.output');
         // // Get event data
         function deviceOrientationListener(event) {
-            // var alpha = event.alpha; //z axis rotation [0,360)
-            // var beta = event.beta; //x axis rotation [-180, 180]
-            // var gamma = event.gamma; //y axis rotation [-90, 90]
-            // output.innerHTML = alpha.toFixed([0]);
-            // output.innerHTML = "utbytt";
-            let a = document.createElement('p');
-            a.innerHTML = "Change";
-            document.getElementById("test").appendChild(a);
+            var alpha = event.alpha; //z axis rotation [0,360)
+            var beta = event.beta; //x axis rotation [-180, 180]
+            var gamma = event.gamma; //y axis rotation [-90, 90]
+            output.innerHTML = alpha.toFixed([0]);
+            output.innerHTML = "Alpha: " + alpha + ", Beta: " + beta + ", Gamma: " + gamma;
+            // let a = document.createElement('p');
+            // a.innerHTML = "Change";
+            // document.getElementById("test").appendChild(a);
         }
 
         if (window.DeviceOrientationEvent) {
-            // alert("Works!");
-            window.addEventListener("deviceorientation", function (event) {
-                // alpha: rotation around z-axis
-                // var rotateDegrees = event.alpha;
-                // gamma: left to right
-                // var leftToRight = event.gamma;
-                // beta: front back motion
-                // var frontToBack = event.beta;
-
-                alert("test");
-
-                // handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
-            }, true);
+            window.addEventListener("deviceorientation", deviceOrientationListener);
 
         } else {
             alert("Doesn't work!");
@@ -121,10 +109,6 @@
         </form>
 
         <pre class=output>a</pre>
-        <div id="test">
-
-        </div>
-
     </div>
 
     <div id="chatroom">
