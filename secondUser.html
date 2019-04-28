@@ -74,7 +74,7 @@
     <script>
         var output = document.querySelector('.output');
         // Get event data
-        function deviceOrientationListener(event) {
+        function handleOrientation(event) {
             var alpha = event.alpha; //z axis rotation [0,360)
             var beta = event.beta; //x axis rotation [-180, 180]
             var gamma = event.gamma; //y axis rotation [-90, 90]
@@ -104,10 +104,6 @@
 
 <body ontouchstart="">
 
-    <!-- <p>This is the publisher:</p>
-                <p id="publisher"></p>
-                <p>This is the current messages:</p>
-                <p id="message"></p> -->
     <div id="firstpage">
         <h1>Welcome to Chat Along</h1>
         <h2>You join channels by pointing your mobilephone towards specific directions. <i>North, </i><i>East,
