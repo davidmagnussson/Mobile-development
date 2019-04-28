@@ -112,25 +112,21 @@
 
         if (event.alpha.toFixed([0]) > 315 || event.alpha.toFixed([0]) < 45) {
           direction.innerHTML = "North";
-          alert("north!");
         } else if (
-          event.alpha.toFixed([0]) > 46 &&
+          event.alpha.toFixed([0]) > 45 &&
           event.alpha.toFixed([0]) < 135
         ) {
           direction.innerHTML = "East";
-          alert("East!");
         } else if (
-          event.alpha.toFixed([0]) > 136 &&
+          event.alpha.toFixed([0]) > 135 &&
           event.alpha.toFixed([0]) < 225
         ) {
           direction.innerHTML = "South";
-          alert("South!");
         } else if (
-          event.alpha.toFixed([0]) > 226 &&
+          event.alpha.toFixed([0]) > 225 &&
           event.alpha.toFixed([0]) < 314
         ) {
           direction.innerHTML = "West";
-          alert("West!");
         }
       }
 
@@ -166,7 +162,7 @@
         <button type="submit">Select</button>
       </form>
 
-      <pre class="output">heh2</pre>
+      <pre class="output">heh3</pre>
       <p id="orientation"></p>
       <p id="direction"></p>
     </div>
