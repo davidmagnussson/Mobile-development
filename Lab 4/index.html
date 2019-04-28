@@ -107,11 +107,6 @@
 </head>
 
 <body ontouchstart="">
-
-  <!-- <p>This is the publisher:</p>
-  <p id="publisher"></p>
-  <p>This is the current messages:</p>
-  <p id="message"></p> -->
   <div id="firstpage">
     <h1>Welcome to Chat Along</h1>
     <h2>You join channels by pointing your mobilephone towards specific directions. <i>North, </i><i>East,
@@ -120,10 +115,9 @@
     <form onsubmit="enterChatroom(event)">
       <input type="text" placeholder="Enter username!" id="username" name="username" />
       <button type="submit">Select</button>
-    </form>
 
-    <button onclick="deviceOrientationListener(event)">Press me!</button>
-    <p id=”heading”></p>
+      <p id="orientation"></p>
+    </form>
   </div>
 
   <div id="chatroom">
