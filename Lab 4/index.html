@@ -55,21 +55,21 @@
 
     subscribeToChannel = direction => {
       // // Unsubbar till alla kanaler
-      // var channels = ["North", "East", "West", "South"];
-      // let result = channels.filter(index => index != direction);
+      var channels = ["North", "East", "West", "South"];
+      let result = channels.filter(index => index != direction);
 
-      // pubnub.unsubscribe({
-      //   channels: result
-      // });
+      pubnub.unsubscribe({
+        channels: result
+      });
 
       document.getElementById("active_room").innerHTML = direction;
       document.getElementById("subroom").innerHTML = direction;
       activeRoom = direction;
 
       // DET ÄR DETTA SOM FUCKAR SÖNDER!!! DET GÅR INTE ATT ÄNDRA SUBSCRIBE I EN FUNKTION?
-      // pubnub.subscribe({
-      //   channels: [activeRoom]
-      // });
+      pubnub.subscribe({
+        channels: [activeRoom]
+      });
     };
 
     // pubnub.subscribe({
@@ -82,14 +82,15 @@
       let direction = document.getElementById("active_room").innerText;
       document.getElementById("room").innerText = direction;
 
-      pubnub.subscribe({
-        channels: [direction]
-      });
+      // FUNKAR?
+      // pubnub.subscribe({
+      //   channels: [direction]
+      // });
 
       let message = document.getElementById("new-message").value;
       pubnub.publish({
         message: { "from": username, "message": message },
-        channel: [direction]
+        channel: [activeRoom]
       });
     }
   </script>
@@ -137,7 +138,7 @@
       <input type="text" placeholder="Enter username!" id="username" name="username" />
       <button type="submit">Select</button>
       <!-- ssssss -->
-      <p>Version 7</p>
+      <p>Version 8</p>
       <p>Send message to: <i id="room"></i></p>
       <p>Subscribe to: <i id="subroom"></i></p>
 
