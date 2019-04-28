@@ -74,22 +74,13 @@
     var output = document.querySelector('.output');
     // // Get event data
     function deviceOrientationListener(event) {
-      // var alpha = event.alpha; //z axis rotation [0,360)
-      // var beta = event.beta; //x axis rotation [-180, 180]
-      // var gamma = event.gamma; //y axis rotation [-90, 90]
-      // output.innerHTML = alpha.toFixed([0]);
-      // output.innerHTML = "utbytt";
-      // let a = document.createElement('p');
-      // a.innerHTML = "Change";
-      // document.getElementById("test").appendChild(a);
+      let element = document.getElementById("orientation");
+      element.innerHTML = "Alpha: " + event.alpha.toFixed([0]) + "<br/> Beta: " + event.beta.toFixed([0]) + "<br/> Gamma: " + event.gamma.toFixed([0]);
     }
 
     if (window.DeviceOrientationEvent) {
       // alert("Works!");
-      window.addEventListener("deviceorientation", function (event) {
-        let element = document.getElementById("orientation");
-        element.innerHTML = "Alpha: " + event.alpha.toFixed([0]) + "<br/> Beta: " + event.beta.toFixed([0]) + "<br/> Gamma: " + event.gamma.toFixed([0]);
-      }, true);
+      window.addEventListener("deviceorientation", deviceOrientationListener, true);
 
     } else {
       alert("Doesn't work!");
