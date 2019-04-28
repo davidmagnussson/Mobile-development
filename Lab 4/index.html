@@ -38,7 +38,6 @@
 
     var pubnub = new PubNub({
       publishKey: "pub-c-c42f11f2-1108-438a-ae06-bfe3787a8131",
-
       subscribeKey: "sub-c-ca7b08c8-67f5-11e9-81d5-56c3556875f9"
     });
 
@@ -46,6 +45,7 @@
     // Subscribe to the demo_tutorial channel pubnub
     pubnub.addListener({
       message: function (message) {
+        alert("hello")
         let newMessage = document.createElement('p');
         newMessage.innerHTML = "From: " + message.message.from + "<br />" + message.message.message;
         document.getElementById("messages").appendChild(newMessage);
@@ -73,6 +73,7 @@
     pubnub.subscribe({
       channels: ["direction"]
     });
+
     sendMessage = (e) => {
       // Publish a simple message to the “demo_tutorial” channel pubnub:
       e.preventDefault();
@@ -130,9 +131,10 @@
       <input type="text" placeholder="Enter username!" id="username" name="username" />
       <button type="submit">Select</button>
       <!-- sssss -->
-      <p>Version 12</p>
+      <p>Version 13</p>
       <p>Send message to: <i id="room"></i></p>
       <p>Subscribe to: <i id="subroom"></i></p>
+
       <p id="orientation"></p>
       <p id="heading"></p>
       <h2>This is room, <i id="active_room"></i></h2>
