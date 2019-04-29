@@ -47,7 +47,8 @@
     pubnub.addListener({
       status: function (statusEvent) {
         if (statusEvent.category === "PNConnectedCategory") {
-          alert(statusEvent.affectedChannels + " " + statusEvent.affectedChannelGroups);
+          alert(statusEvent.affectedChannels);
+          alert(statusEvent.affectedChannelGroups);
         }
       },
       message: function (message) {
