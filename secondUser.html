@@ -115,21 +115,25 @@
             if (alpha.toFixed([0]) > 315 || alpha.toFixed([0]) < 45) {
                 if (previous_orientation != 'North') {
                     previous_orientation = 'North';
+                    document.getElementById("messages").innerHTML = "";
                     subscribeToChannel("North");
                 }
             } else if (alpha.toFixed([0]) > 45 && alpha.toFixed([0]) < 135) {
                 if (previous_orientation != 'West') {
                     previous_orientation = 'West';
+                    document.getElementById("messages").innerHTML = "";
                     subscribeToChannel("West");
                 }
             } else if (alpha.toFixed([0]) > 135 && alpha.toFixed([0]) < 225) {
                 if (previous_orientation != 'South') {
                     previous_orientation = 'South';
+                    document.getElementById("messages").innerHTML = "";
                     subscribeToChannel("South");
                 }
             } else if (alpha.toFixed([0]) > 225 && alpha.toFixed([0]) < 314) {
                 if (previous_orientation != 'East') {
                     previous_orientation = 'East';
+                    document.getElementById("messages").innerHTML = "";
                     subscribeToChannel("East");
                 }
             }
@@ -162,7 +166,7 @@
             <button type="submit">Select</button>
         </form>
 
-        <pre>FINAL VERSION</pre>
+        <pre>FINAL VERSION 1.0</pre>
         <p id="orientation"></p>
         <p id="heading"></p>
     </div>
