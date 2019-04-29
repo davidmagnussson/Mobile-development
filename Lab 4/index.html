@@ -45,12 +45,20 @@
 
     // Subscribe to the demo_tutorial channel pubnub
     pubnub.addListener({
+      status: function (statusEvent) {
+        if (statusEvent.category === "PNConnectedCategory") {
+          alert(status);
+        }
+      },
       message: function (message) {
         alert("hello")
         let newMessage = document.createElement('p');
         newMessage.innerHTML = "From: " + message.message.from + "<br />" + message.message.message;
         document.getElementById("messages").appendChild(newMessage);
-      }
+      },
+      // presence: function (presenceEvent) {
+      //   // handle presence
+      // }
     });
 
     subscribeToChannel = direction => {
@@ -64,7 +72,7 @@
 
       document.getElementById("active_room").innerHTML = direction;
       document.getElementById("subroom").innerHTML = direction;
-      activeRoom = direction;
+      // activeRoom = direction;
 
       // DET ÄR DETTA SOM FUCKAR SÖNDER!!! DET GÅR INTE ATT ÄNDRA SUBSCRIBE I EN FUNKTION?
       // pubnub.subscribe({
