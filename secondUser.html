@@ -115,7 +115,7 @@
             if (alpha.toFixed([0]) > 315 || alpha.toFixed([0]) < 45) {
                 if (previous_orientation != 'North') {
                     previous_orientation = 'North';
-                    document.getElementById("messages").innerHTML = "";
+                    document.getElementById("messages").innerHTML = "";  // Tömmer chat-fältet när man går in i nytt rum.
                     subscribeToChannel("North");
                 }
             } else if (alpha.toFixed([0]) > 45 && alpha.toFixed([0]) < 135) {
