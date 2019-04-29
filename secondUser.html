@@ -65,10 +65,13 @@
 
         subscribeToChannel = direction => {
             // Unsubbar till alla kanaler
-            // var channels = ["North", "East", "West", "South"];
-            // let result = channels.filter(index => index != direction);
+            var channels = ["North", "East", "West", "South"];
+            let result = channels.filter(index => index != direction);
 
-            pubnub.unsubscribeAll();
+            pubnub.unsubscribe({
+                channels: result
+            });
+            // pubnub.unsubscribeAll();
             document.getElementById("active_room").innerHTML = direction;
 
             //Subbar till specifik kanal
@@ -93,6 +96,7 @@
 
     <!-- Script för navigering av mbil, koodianater -->
     <script>
+        let previous_orientation = 'North';
         // // Get event data
         function deviceOrientationListener(event) {
             let element = document.getElementById("orientation");
@@ -121,13 +125,25 @@
             }
 
             if (alpha.toFixed([0]) > 315 || alpha.toFixed([0]) < 45) {
-                subscribeToChannel("North");
+                if (previous_orientation != 'North') {
+                    previous_orientation = 'North';
+                    subscribeToChannel("North");
+                }
             } else if (alpha.toFixed([0]) > 45 && alpha.toFixed([0]) < 135) {
-                subscribeToChannel("West");
+                if (previous_orientation != 'West') {
+                    previous_orientation = 'West';
+                    subscribeToChannel("West");
+                }
             } else if (alpha.toFixed([0]) > 135 && alpha.toFixed([0]) < 225) {
-                subscribeToChannel("South");
+                if (previous_orientation != 'South') {
+                    previous_orientation = 'South';
+                    subscribeToChannel("South");
+                }
             } else if (alpha.toFixed([0]) > 225 && alpha.toFixed([0]) < 314) {
-                subscribeToChannel("East");
+                if (previous_orientation != 'East') {
+                    previous_orientation = 'East';
+                    subscribeToChannel("East");
+                }
             }
         }
 
@@ -158,7 +174,7 @@
             <button type="submit">Select</button>
         </form>
 
-        <pre>version 21</pre>
+        <pre>version 100</pre>
         <p id="orientation"></p>
         <p id="heading"></p>
     </div>
