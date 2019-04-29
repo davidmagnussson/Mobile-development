@@ -112,18 +112,6 @@
               "<br/> Gamma: " +
               event.gamma.toFixed([0]); */
 
-            //Check if absolute values have been sent
-            // if (typeof event.webkitCompassHeading !== "undefined") {
-            //     alpha = event.webkitCompassHeading; //for iOS devices
-            //     var heading = alpha;
-            //     document.getElementById("heading").innerHTML = heading.toFixed([0]);
-            // }
-            // else {
-            //     alert("Your device is reporting relative alpha values, so this compass won't point north :(");
-            //     var heading = 360 - alpha; //heading [0, 360)
-            //     document.getElementById("heading").innerHTML = heading.toFixed([0]);
-            // }
-
             if (alpha.toFixed([0]) > 315 || alpha.toFixed([0]) < 45) {
                 if (previous_orientation != 'North') {
                     previous_orientation = 'North';
@@ -174,7 +162,7 @@
             <button type="submit">Select</button>
         </form>
 
-        <pre>version 101</pre>
+        <pre>FINAL VERSION</pre>
         <p id="orientation"></p>
         <p id="heading"></p>
     </div>
