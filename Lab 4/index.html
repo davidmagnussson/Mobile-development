@@ -63,21 +63,26 @@
 
     subscribeToChannel = direction => {
       // Unsubbar till alla kanaler
-      // var channels = ["North", "East", "West", "South"];
-      // let result = channels.filter(index => index != direction);
+      var channels = ["North", "East", "West", "South"];
+      let result = channels.filter(index => index != direction);
 
-      // pubnub.unsubscribe({
-      //   channels: result
-      // });
+      pubnub.unsubscribe({
+        channels: result
+      });
+
+      console.log("unsub<b/>");
 
       document.getElementById("active_room").innerHTML = direction;
       document.getElementById("subroom").innerHTML = direction;
+
       // activeRoom = direction;
 
       // DET ÄR DETTA SOM FUCKAR SÖNDER!!! DET GÅR INTE ATT ÄNDRA SUBSCRIBE I EN FUNKTION?
-      // pubnub.subscribe({
-      //   channels: [direction]
-      // });
+      pubnub.subscribe({
+        channels: [direction]
+      });
+      console.log("subb <br/>");
+
     };
 
     // pubnub.subscribe({
@@ -90,18 +95,18 @@
       let direction = document.getElementById("active_room").innerText;
       document.getElementById("room").innerText = direction;
 
-      // FUNGERAR DETTA?----------
-      var allChannels = ["North", "East", "West", "South"];
-      let result = allChannels.filter(index => index != direction);
+      // // FUNGERAR DETTA?----------
+      // var allChannels = ["North", "East", "West", "South"];
+      // let result = allChannels.filter(index => index != direction);
 
-      pubnub.unsubscribe({
-        channels: result
-      });
+      // pubnub.unsubscribe({
+      //   channels: result
+      // });
 
-      pubnub.subscribe({
-        channels: [direction]
-      });
-      // FUNGERAR DETTA?----------
+      // pubnub.subscribe({
+      //   channels: [direction]
+      // });
+      // // FUNGERAR DETTA?----------
 
       let message = document.getElementById("new-message").value;
       pubnub.publish({
