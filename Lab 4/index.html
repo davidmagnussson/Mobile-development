@@ -47,7 +47,7 @@
     pubnub.addListener({
       status: function (statusEvent) {
         if (statusEvent.category === "PNConnectedCategory") {
-          alert(status);
+          alert(statusEvent);
         }
       },
       message: function (message) {
@@ -56,9 +56,9 @@
         newMessage.innerHTML = "From: " + message.message.from + "<br />" + message.message.message;
         document.getElementById("messages").appendChild(newMessage);
       },
-      // presence: function (presenceEvent) {
-      //   // handle presnce
-      // }
+      presence: function (presenceEvent) {
+        alert(presenceEvent);
+      }
     });
 
     subscribeToChannel = direction => {
