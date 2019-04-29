@@ -65,13 +65,10 @@
 
         subscribeToChannel = direction => {
             // Unsubbar till alla kanaler
-            var channels = ["North", "East", "West", "South"];
-            let result = channels.filter(index => index != direction);
+            // var channels = ["North", "East", "West", "South"];
+            // let result = channels.filter(index => index != direction);
 
-            pubnub.unsubscribe({
-                channels: result
-            });
-
+            pubnub.unsubscribeAll();
             document.getElementById("active_room").innerHTML = direction;
 
             //Subbar till specifik kanal
