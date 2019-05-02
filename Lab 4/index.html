@@ -1,193 +1,265 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no,
+		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
+    />
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, user-scalable=no,
-		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Labb 4</title>
 
-  <title>Labb 4</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <style>
-    /* @import "ui/css/evothings-app.css"; */
-  </style>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-  <script>
-    // Redirect console.log to Evothings Workbench.
-    // if (window.hyper && window.hyper.log) {
-    //   console.log = hyper.log;
-    // }
-  </script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.23.0.js"></script>
-  <!-- <script src="libs/jquery/jquery.js"></script> -->
+    <!-- <script src="libs/jquery/jquery.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <!-- Instantiate PubNub -->
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js"></script>
 
-  <!-- Instantiate PubNub -->
+    <script type="text/javascript">
+      // $("#firstpage").show();
+      //$("#chatroom").hide();
 
-  <script type="text/javascript">
-    // $("#firstpage").show();
-    // $("#chatroom").hide();
-    let username = "UNKNOWN";
-    let activeRoom = "north";
+      let username = "UNKNOWN";
 
-    enterChatroom = (e) => {
-      e.preventDefault();
-      username = document.getElementById("username").value;
-      // $("#firstpage").hide();
-      // $("#chatroom").show();
-    }
+      enterChatroom = e => {
+        e.preventDefault();
+        username = document.getElementById("username").value;
+        document.getElementById("name").innerText = username;
+        document.getElementById("chatroom").style.display = "block";
+        document.getElementById("firstpage").style.display = "none";
 
-    var pubnub = new PubNub({
-      publishKey: "pub-c-c42f11f2-1108-438a-ae06-bfe3787a8131",
-      subscribeKey: "sub-c-ca7b08c8-67f5-11e9-81d5-56c3556875f9"
-    });
+        // $("#firstpage").hide();
+        // $("#chatroom").show();
+      };
 
+      var pubnub = new PubNub({
+        publishKey: "pub-c-c42f11f2-1108-438a-ae06-bfe3787a8131",
 
-    // Subscribe to the demo_tutorial chanel pubnub
-    pubnub.addListener({
-      status: function (statusEvent) {
-        if (statusEvent.category === "PNConnectedCategory") {
-          alert(statusEvent.affectedChannels);
-          alert(statusEvent.affectedChannelGroups);
+        subscribeKey: "sub-c-ca7b08c8-67f5-11e9-81d5-56c3556875f9"
+      });
+
+      // Subscribe to the demo_tutorial channel pubnub
+      pubnub.addListener({
+        message: function(message) {
+          let newMessage = document.createElement("p");
+          newMessage.innerHTML =
+            "<span style='color: #85C1E9'>From: </span>" +
+            message.message.from +
+            "<br />" +
+            "<span style='color: #28B463'>Message: </span>" +
+            message.message.message +
+            "<br />" +
+            "<span style='color: #ec7063'>Room: </span>" +
+            document.getElementById("active_room").innerText;
+
+          document.getElementById("messages").appendChild(newMessage);
+          // document.getElementById("message").innerHTML = message_array;
+          // document.getElementById("publisher").innerHTML = message.message.from;
         }
-      },
-      message: function (message) {
-        alert("hello")
-        let newMessage = document.createElement('p');
-        newMessage.innerHTML = "From: " + message.message.from + "<br />" + message.message.message;
-        document.getElementById("messages").appendChild(newMessage);
-      },
-      // presence: function (presenceEvent) {
-      //   alert(presenceEvent);
-      // }
-    });
-
-    subscribeToChannel = direction => {
-      // Unsubbar till alla kanaler
-      var channels = ["North", "East", "West", "South"];
-      let result = channels.filter(index => index != direction);
-
-      pubnub.unsubscribe({
-        channels: result
       });
 
-      // console.log("unsub");
+      subscribeToChannel = direction => {
+        // Unsubbar till alla kanaler
+        var channels = ["North", "East", "West", "South"];
+        let result = channels.filter(index => index != direction);
 
-      document.getElementById("active_room").innerHTML = direction;
-      document.getElementById("subroom").innerHTML = direction;
+        pubnub.unsubscribe({
+          channels: result
+        });
 
-      // activeRoom = direction;
+        document.getElementById("active_room").innerHTML = direction;
 
-      // DET ÄR DETTA SOM FUCKAR SÖNDER!! DET GÅR INTE ATT ÄNDRA SUBSCRIBE I EN FUNKTION?
-      pubnub.subscribe({
-        channels: [direction]
-      });
-      // console.log("subb <br/>");
+        //Subbar till specifik kanal
+        pubnub.subscribe({
+          channels: [direction]
+        });
+      };
 
-    };
+      sendMessage = e => {
+        // Publish a simple message to the “demo_tutorial” channel pubnub:
+        e.preventDefault();
+        // let from = document.getElementById("from").value;
+        let direction = document.getElementById("active_room").innerText;
+        let message = document.getElementById("new-message").value;
 
-    // pubnub.subscribe({
-    //   channels: [activeRoom]
-    // });
+        pubnub.publish({
+          message: { from: username, message: message },
+          channel: [direction]
+        });
+      };
+    </script>
 
-    sendMessage = (e) => {
-      // Publish a simple message to the “demo_tutorial” channel pubnub:
-      e.preventDefault();
-      let direction = document.getElementById("active_room").innerText;
-      document.getElementById("room").innerText = direction;
+    <!-- Script för navigering av mobil, koodianater -->
+    <script>
+      let previous_orientation = "";
+      // // Get event data
+      function deviceOrientationListener(event) {
+        let element = document.getElementById("orientation");
+        var alpha = event.alpha; //z axis rotation [0,360)
+        var beta = event.beta; //x axis rotation [-180, 180]
+        var gamma = event.gamma; //y axis rotation [-90, 90]
 
-      // // FUNGERAR DETTA?---------
-      // var allChannels = ["North", "East", "West", "South"];
-      // let result = allChannels.filter(index => index != direction);
+        /* element.innerHTML =
+          "Alpha: " +
+          event.alpha.toFixed([0]) +
+          "<br/> Beta: " +
+          event.beta.toFixed([0]) +
+          "<br/> Gamma: " +
+          event.gamma.toFixed([0]); */
 
-      // pubnub.unsubscribe({
-      //   channels: result
-      // });
+        /* if (typeof event.webkitCompassHeading !== "undefined") {
+          alpha = event.webkitCompassHeading; //for iOS devices
+        } else {
+          alpha = 360 - alpha; //heading [0, 360)
+        } */
 
-      // pubnub.subscribe({
-      //   channels: [direction]
-      // });
-      // // FUNGERAR DETTA?----------
-
-      let message = document.getElementById("new-message").value;
-      pubnub.publish({
-        message: { "from": username, "message": message },
-        channel: [direction]
-      });
-    }
-  </script>
-
-  <script>
-    var output = document.querySelector('.output');
-    // // Get event data
-    function deviceOrientationListener(event) {
-      let element = document.getElementById("orientation");
-      var alpha = event.alpha; //z axis rotation [0,360)
-      var beta = event.beta; //x axis rotation [-180, 180]
-      var gamma = event.gamma; //y axis rotation [-90, 90]
-      element.innerHTML = "Alpha: " + event.alpha.toFixed([0]) + "<br/> Beta: " + event.beta.toFixed([0]) + "<br/> Gamma: " + event.gamma.toFixed([0]);
-
-      if (alpha.toFixed([0]) > 315 || alpha.toFixed([0]) < 45) {
-        subscribeToChannel("North");
-      } else if (alpha.toFixed([0]) > 45 && alpha.toFixed([0]) < 135) {
-        subscribeToChannel("West");
-      } else if (alpha.toFixed([0]) > 135 && alpha.toFixed([0]) < 225) {
-        subscribeToChannel("South");
-      } else if (alpha.toFixed([0]) > 225 && alpha.toFixed([0]) < 314) {
-        subscribeToChannel("East");
+        if (alpha.toFixed([0]) > 315 || alpha.toFixed([0]) < 45) {
+          if (previous_orientation != "North") {
+            previous_orientation = "North";
+            document.getElementById("messages").innerHTML = ""; // Tömmer chat-fältet när man går in i nytt rum.
+            subscribeToChannel("North");
+          }
+        } else if (alpha.toFixed([0]) > 45 && alpha.toFixed([0]) < 135) {
+          if (previous_orientation != "West") {
+            previous_orientation = "West";
+            document.getElementById("messages").innerHTML = "";
+            subscribeToChannel("West");
+          }
+        } else if (alpha.toFixed([0]) > 135 && alpha.toFixed([0]) < 225) {
+          if (previous_orientation != "South") {
+            previous_orientation = "South";
+            document.getElementById("messages").innerHTML = "";
+            subscribeToChannel("South");
+          }
+        } else if (alpha.toFixed([0]) > 225 && alpha.toFixed([0]) < 314) {
+          if (previous_orientation != "East") {
+            previous_orientation = "East";
+            document.getElementById("messages").innerHTML = "";
+            subscribeToChannel("East");
+          }
+        }
       }
-    }
 
-    if (window.DeviceOrientationEvent) {
-      window.addEventListener("deviceorientation", deviceOrientationListener, true);
+      if (window.DeviceOrientationEvent) {
+        // alert("Works!");
+        window.addEventListener(
+          "deviceorientation",
+          deviceOrientationListener,
+          true
+        );
+      } else {
+        alert("Doesn't work!");
+      }
+    </script>
 
-    } else {
-      alert("Doesn't work!");
-    }
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Schoolbell");
+      @import url("https://fonts.googleapis.com/css?family=Indie+Flower");
 
-  </script>
+      body {
+        font-family: "Indie Flower", cursive;
+      }
 
+      i.far {
+        margin: 10px;
+        color: #ec7063;
+      }
+    </style>
+  </head>
 
-</head>
+  <body ontouchstart="">
+    <div id="firstpage" class="container" style="margin: 5px">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 style="margin: 15px">Welcome to Chat Along!</h1>
+        </div>
+      </div>
 
-<body ontouchstart="">
-  <div id="firstpage">
-    <h1>Welcome to Chat Along</h1>
-    <h2>You join channels by pointing your mobilephone towards specific directions. <i>North, </i><i>East,
-      </i><i>South, </i><i>West</i></h2>
-    <h4>Please enter username to start chatting</h4>
-    <form onsubmit="enterChatroom(event)">
-      <input type="text" placeholder="Enter username!" id="username" name="username" />
-      <button type="submit">Select</button>
-      <!-- ssss -->
-      <p>Version 7</p>
-      <p>Send message to: <i id="room"></i></p>
-      <p>Subscribe to: <i id="subroom"></i></p>
+      <div class="row">
+        <div class="col-12">
+          <h2>
+            <i class="far fa-compass"></i> You join channels by pointing your
+            mobilephone towards specific directions. <i>North, </i><i>East, </i
+            ><i>South, </i><i>West</i>
+          </h2>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-12">
+          <h2>
+            <i class="far fa-user"></i>Please enter your username down below to
+            start chatting!
+          </h2>
+
+          <form onsubmit="enterChatroom(event)">
+            <input
+              type="text"
+              placeholder="Enter username!"
+              id="username"
+              name="username"
+              style=" border-radius: 2.5px; border: 2px solid #566573"
+            />
+            <button class="btn btn-info" type="submit">Select</button>
+          </form>
+        </div>
+      </div>
+
+      <pre><i>version 25</i></pre>
       <p id="orientation"></p>
-      <p id="heading"></p>
-      <h2>This is room, <i id="active_room"></i></h2>
-    </form>
-  </div>
-
-  <div id="chatroom">
-    <h2>Messages:</h2>
-    <form onsubmit="sendMessage(event)">
-      <!-- <input type="text" placeholder="Who is sending the message?" name="from" id="from" /> -->
-      <input type="text" placeholder="Write message!" name="new-message" id="new-message" />
-      <button type="submit">
-        Send message!
-      </button>
-    </form>
-
-    <div id="messageDiv">
-      <p id="messages"></p>
     </div>
-  </div>
 
-  <script src="cordova.js"></script>
-  <script src="libs/evothings/evothings.js"></script>
-  <script src="libs/evothings/ui/ui.js"></script>
-</body>
+    <div id="chatroom" class="container" style="margin: 5px">
+      <h1>Welcome: <span id="name" style="color: #85C1E9"></span>!</h1>
+      <!--dssassss -->
+      <div id="room">
+        <h2>
+          You're now in room: <i id="active_room" style="color: #ec7063"></i>
+        </h2>
+      </div>
 
+      <form onsubmit="sendMessage(event)">
+        <!-- <input type="text" placeholder="Who is sending the message?" name="from" id="from" /> -->
+        <input
+          type="text"
+          placeholder="Write message!"
+          name="new-message"
+          id="new-message"
+        />
+        <button class="btn btn-success" type="submit">
+          Send message!
+        </button>
+      </form>
+      <h2>Messages:</h2>
+
+      <div id="messageDiv">
+        <p id="messages"></p>
+      </div>
+    </div>
+
+    <script src="cordova.js"></script>
+    <script>
+      document.getElementById("chatroom").style.display = "none";
+    </script>
+  </body>
 </html>
