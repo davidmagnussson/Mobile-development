@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=yes,
+		initial-scale=1.0" />
+
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <title>Tipsrundan</title>
+
+  <style>
+    @import "page.css";
+
+    body {
+      text-align: center;
+    }
+
+    #my-header {
+      background-image: url("neo.png");
+    }
+
+    ons-page {
+      align-content: center;
+      text-align: center;
+    }
+
+    i.fas {
+      color: #e94057;
+      margin: 5px;
+    }
+
+    h1 {
+      color: #e94057;
+    }
+
+    img {
+      height: 200px;
+      width: 200px;
+    }
+
+    #navbar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    button {
+      text-align: center;
+    }
+
+    .btn-group.special {
+      display: flex;
+    }
+
+    .special .btn {
+      flex: 1
+    }
+  </style>
+
+  <script>
+
+    // Redirect console if runng fromvothings Workbench.
+    if (window.hyper) {
+      console.log = hyper.log;
+    }
+
+
+
+    function checkAnswer(answer) {
+      let check = answer.classList.contains("right");
+      if (check) {
+        answer.style.backgroundColor = "#50C878";
+        answer.style.color = "#eee";
+        answer.style.fontWeight = "bold";
+      } else {
+        answer.style.backgroundColor = "#e94057";
+        answer.style.color = "#eee";
+        answer.style.fontWeight = "bold";
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div id="startpage">
+    <h1>Pick a subject for your Quiz!</h1>
+    <!-- <button id="historyQuiz">History</button>
+    <button id="scienceQuiz">Science</button>
+    <button id="sportsQuiz">Sports</button> -->
+    <button type="button" class="btn btn-outline-info" id="historyQuiz">History</button><br />
+    <button type="button" class="btn btn-outline-info" id="scienceQuiz">Science</button><br />
+    <button type="button" class="btn btn-outline-info" id="sportsQuiz">Sports</button><br />
+
+  </div>
+
+  <div id="game">
+    <div class="my-page" id="page-default">
+      <div class="my-header">
+        <h1>Welcome to Tipsrundan!</h1>
+      </div>
+      <div><img src="tipspromenad.jpeg" /></div>
+      <div class="my-content">
+        <h3>Each room contains a question with multi-choice answers</h3>
+        <h4>Can you get them all right??</h4>
+      </div>
+    </div>
+
+    <!-- page-surs -->
+    <div class="my-page" id="firstQuestion">
+      <ons-page>
+        <div class="my-header">
+          <h1><i class="fas fa-street-view"></i> Plats:</h1>
+          <h3>Matsalen</h3>
+          <h1><i class="fas fa-question"></i>Fråga:</h1>
+          <h3 id="question1"></h3>
+        </div>
+        <div><img src="poet.png" /></div>
+        <div class="my-content">
+          <ons-list id="poets-list">
+            <ons-list-item tappable id="q1a1" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question1alt1"></h3>
+            </ons-list-item>
+
+            <ons-list-item tappable id="q1a2" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question1alt2"></h3>
+            </ons-list-item>
+
+            <ons-list-item tappable id="q1a3" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question1alt3"></h3>
+            </ons-list-item>
+
+            <ons-list-item tappable id="q1a4" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question1alt4"></h3>
+            </ons-list-item>
+          </ons-list>
+        </div>
+      </ons-page>
+    </div>
+
+    <!-- page-fee -->
+    <div class="my-page" id="secondQuestion">
+      <ons-page>
+        <div class="my-header">
+          <h1><i class="fas fa-street-view"></i> Plats:</h1>
+          <h3>Konsthallen</h3>
+          <h1><i class="fas fa-question"></i>Fråga:</h1>
+          <h3 id="question2"></h3>
+        </div>
+        <div><img src="island.png" /></div>
+        <div class="my-content">
+          <ons-list id="islands-list">
+            <ons-list-item tappable id="q2a1" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question2alt1"></h3>
+            </ons-list-item>
+
+            <ons-list-item tappable id="q2a2" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question2alt2"></h3>
+            </ons-list-item>
+
+            <ons-list-item tappable id="q2a3" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question2alt3"></h3>
+            </ons-list-item>
+
+            <ons-list-item tappable id="q2a4" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question2alt4"></h3>
+            </ons-list-item>
+          </ons-list>
+        </div>
+      </ons-page>
+    </div>
+
+    <!-- page-face -->
+    <div class="my-page" id="thirdQuestion">
+      <ons-page>
+        <div class="my-header">
+          <h1><i class="fas fa-street-view"></i> Plats:</h1>
+          <h3>Spelhallen</h3>
+          <h1><i class="fas fa-question"></i>Fråga:</h1>
+          <h3 id="question3"></h3>
+        </div>
+        <div><img src="neo.png" /></div>
+        <div id="my-content">
+          <ons-list id="actors-list">
+            <ons-list-item tappable id="q3a1" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question3alt1"></h3>
+            </ons-list-item>
+
+            <ons-list-item tappable id="q3a2" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question3alt2"></h3>
+            </ons-list-item>
+
+            <ons-list-item tappable id="q3a3" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question3alt3"></h3>
+            </ons-list-item>
+
+            <ons-list-item tappable id="q3a4" class="questions" onClick="checkAnswer(this)">
+              <h3 id="question3alt4"></h3>
+            </ons-list-item>
+          </ons-list>
+        </div>
+      </ons-page>
+    </div>
+  </div>
+
+  <div id="navbar">
+    <div class="btn-group special btn-group-lg" id="buttonGroup" role="group" aria-label="Basic example">
+      <button class="btn btn-info nav">Map</button>
+      <button class="btn btn-info nav">Quiz</button>
+      <button class="btn btn-info nav">Profile</button>
+    </div>
+  </div>
+
+  <script src="lib/jquery.js"></script>
+  <script src="cordova.js"></script>
+  <script src="model.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

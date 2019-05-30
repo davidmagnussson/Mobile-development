@@ -1,17 +1,94 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no,
+		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css" />
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <title>Lab 2</title>
+
+  <style>
+    @import "ui/css/evothings-app.css";
+
+    body {
+      text-align: center;
+      text: #eee;
+    }
+
+    #list-of-excercises {
+      width: 90%;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+
+    hr {
+      width: 95%;
+    }
+
+    ons-list-item {
+      height: 90px;
+    }
+
+    li {
+      padding: 5px;
+    }
+
+    #about-tab {
+      background-color: #e94057;
+    }
+
+    .header {
+      background-color: #e94057;
+    }
+
+    .header-text {
+      color: #eee;
+      font-size: 20px;
+    }
+
+    .exc {
+      color: #e94057;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    #home-header {
+      color: #e94057;
+    }
+
+    h4,
+    h3,
+    h2,
+    h1 {
+      color: #e94057;
+    }
+  </style>
+
+  <script>
+    // Redirect console.log to Evothings Workbench.
+    if (window.hyper && window.hyper.log) {
+      console.log = hyper.log;
+    }
+  </script>
+</head>
+
+<body ontouchstart="">
+  <!DOCTYPE html>
+  <html>
+
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no,
-		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+					shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css" />
+    <link rel="stylesheet" type="text/css" href="path/to/onsen-css-components.css" />
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -73,6 +150,19 @@
       h1 {
         color: #e94057;
       }
+
+      .tab[active] {
+        background-color: #e94057;
+      }
+
+      .tab[active] ons-icon,
+      .tab[active] span {
+        color: #eee;
+      }
+
+      span {
+        color: #e94057;
+      }
     </style>
 
     <script>
@@ -80,286 +170,148 @@
       if (window.hyper && window.hyper.log) {
         console.log = hyper.log;
       }
+
+      document.addEventListener("prechange", function (event) {
+        document.querySelector(
+          "ons-toolbar .center"
+        ).innerHTML = event.tabItem.getAttribute("label");
+      });
     </script>
   </head>
 
   <body ontouchstart="">
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, user-scalable=no,
-					shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
-        />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/onsenui/css/onsenui.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="path/to/onsen-css-components.css"
-        />
-        <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-        <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <ons-page>
+      <ons-toolbar class="header">
+        <div class="center" style="text-align: center; color:#eee">
+          About
+        </div>
+      </ons-toolbar>
 
-        <title>Lab 2</title>
+      <ons-tabbar swipeable position="bottom" id="tabs">
+        <ons-tab page="tab1.html" active="true" class="tab">
+          <ons-icon size="20px" icon="fa-info-circle"></ons-icon>
+          <span style="font-size: 15px;">About</span>
+        </ons-tab>
+        <ons-tab page="tab2.html" class="tab">
+          <ons-icon size="20px" icon="fa-walking"></ons-icon>
+          <span style="font-size: 15px;">Walk</span>
+        </ons-tab>
+        <ons-tab page="tab3.html" class="tab">
+          <ons-icon size="20px" icon="fa-book"></ons-icon>
+          <span style="font-size: 15px;">Read</span>
+        </ons-tab>
+        <ons-tab page="tab4.html" class="tab">
+          <ons-icon size="20px" icon="md-face"></ons-icon>
+          <span style="font-size: 15px;">Face</span>
+        </ons-tab>
+      </ons-tabbar>
+    </ons-page>
 
-        <style>
-          @import "ui/css/evothings-app.css";
+    <template id="tab1.html">
+      <ons-page id="Tab1">
+        <h3>What is RelaxApp?</h3>
+        <hr />
 
-          body {
-            text-align: center;
-            text: #eee;
-          }
+        <div>
+          <h3>About our application</h3>
+          <p>
+            The application is instructions on how to perform excercices and
+            What the excercise is good for!
+          </p>
 
-          #list-of-excercises {
-            width: 90%;
-            margin-left: 5%;
-            margin-right: 5%;
-          }
+          <h3>Onsen IO</h3>
+          <p>
+            This application is run and powered by the mobile UI development
+            tool and framework Onsen
+          </p>
 
-          hr {
-            width: 95%;
-          }
+          <h3>Davmart</h3>
+          <p>
+            Davmart is a group with two students taking a course in Mobile
+            development at KTH. The members of this group is David Magnusson
+            and Martin Mosesson
+          </p>
+        </div>
+      </ons-page>
+    </template>
 
-          ons-list-item {
-            height: 90px;
-          }
+    <template id="tab2.html">
+      <ons-page id="Tab2">
+        <div class="content">
+          <h1>Instructions</h1>
+          <h3>Put your mind at ease and go for a relaxing walk.</h3>
+          <ul>
+            <li>
+              Put on some comfortable clothes, you want to feel relaxed when
+              walking
+            </li>
+            <li>
+              Find a beautiful place where you can walk, preferably in the
+              nature
+            </li>
+            <li>Walk at a moderate pace, don't stress yourself</li>
+            <li>Think about nice things, let your problems go away</li>
+            <li>
+              Walk back when you feel relaxed, enjoy your newly found energy
+              and tranquility
+            </li>
+          </ul>
+          <img src="./relaxation.jpg" alt="no image" height="150px" width="250px" />
+        </div>
+      </ons-page>
+    </template>
 
-          li {
-            padding: 5px;
-          }
+    <template id="tab3.html">
+      <ons-page id="Tab3">
+        <div class="content">
+          <h1>Instructions</h1>
+          <h3>Put your mind at ease and read a nice book</h3>
+          <ul>
+            <li>
+              Find a spot in your house where you can sit or lay down
+              comfortably
+            </li>
+            <li>
+              Make a nice beverage, for example a cup of tea
+            </li>
+            <li>
+              Start reading your book and let yourself get pulled away into
+              the books enchanting world
+            </li>
+            <li>
+              Stop reading when you feel bored. Reading is not a sprint, it
+              is a marathon. Take your time with the book.
+            </li>
+          </ul>
+          <img src="./relaxation.jpg" alt="no image" height="150px" width="250px" />
+        </div>
+      </ons-page>
+    </template>
 
-          #about-tab {
-            background-color: #e94057;
-          }
-
-          .header {
-            background-color: #e94057;
-          }
-
-          .header-text {
-            color: #eee;
-            font-size: 20px;
-          }
-
-          .exc {
-            color: #e94057;
-            font-size: 17px;
-            font-weight: bold;
-          }
-
-          #home-header {
-            color: #e94057;
-          }
-
-          h4,
-          h3,
-          h2,
-          h1 {
-            color: #e94057;
-<<<<<<< HEAD
-          }
-
-          .tabbar__item:active {
-            background-color: red !important;
-            color: red !important;
-          }
-=======
-		  }
-		  
-		  .tab[active]{
-			  background-color: #e94057;			  
-		  }
-
-		  .tab[active] ons-icon, .tab[active] span{
-				color: #eee;
-		  }
-
-		  span{
-			  color: #e94057;
-		  }
->>>>>>> 60cf29fc9295d698c61063db300be36f6a171df8
-        </style>
-
-        <script>
-          // Redirect console.log to Evothings Workbench.
-          if (window.hyper && window.hyper.log) {
-            console.log = hyper.log;
-          }
-
-          document.addEventListener("prechange", function(event) {
-            document.querySelector(
-              "ons-toolbar .center"
-            ).innerHTML = event.tabItem.getAttribute("label");
-          });
-        </script>
-      </head>
-
-      <body ontouchstart="">
-        <ons-page>
-          <ons-toolbar class="header">
-            <div class="center" style="text-align: center; color:#eee">
-              About
-            </div>
-          </ons-toolbar>
-
-          <ons-tabbar swipeable position="bottom" id="tabs">
-            <ons-tab page="tab1.html" active="true" class="tab">
-				<ons-icon size="20px" icon="fa-info-circle"></ons-icon>
-				<span style="font-size: 15px;">About</span>
-            </ons-tab>
-            <ons-tab page="tab2.html" class="tab">
-				<ons-icon size="20px" icon="fa-walking"></ons-icon>
-				<span style="font-size: 15px;">Walk</span>
-			</ons-tab>
-            <ons-tab page="tab3.html" class="tab">
-				<ons-icon size="20px" icon="fa-book"></ons-icon>
-				<span style="font-size: 15px;">Read</span>
-			</ons-tab>
-            <ons-tab page="tab4.html" class="tab">
-				<ons-icon size="20px" icon="md-face"></ons-icon>
-				<span style="font-size: 15px;">Face</span>
-			</ons-tab>
-          </ons-tabbar>
-        </ons-page>
-
-        <template id="tab1.html">
-          <ons-page id="Tab1">
-            <h3>What is RelaxApp?</h3>
-            <hr />
-
-            <div>
-              <h3>About our application</h3>
-              <p>
-                The application is instructions on how to perform excercices and
-                What the excercise is good for!
-              </p>
-
-              <h3>Onsen IO</h3>
-              <p>
-                This application is run and powered by the mobile UI development
-                tool and framework Onsen
-              </p>
-
-              <h3>Davmart</h3>
-              <p>
-                Davmart is a group with two students taking a course in Mobile
-                development at KTH. The members of this group is David Magnusson
-                and Martin Mosesson
-              </p>
-            </div>
-          </ons-page>
-        </template>
-
-        <template id="tab2.html">
-          <ons-page id="Tab2">
-            <div class="content">
-              <h1>Instructions</h1>
-              <h3>Put your mind at ease and go for a relaxing walk.</h3>
-              <ul>
-                <li>
-                  Put on some comfortable clothes, you want to feel relaxed when
-                  walking
-                </li>
-                <li>
-                  Find a beautiful place where you can walk, preferably in the
-                  nature
-                </li>
-                <li>Walk at a moderate pace, don't stress yourself</li>
-                <li>Think about nice things, let your problems go away</li>
-                <li>
-                  Walk back when you feel relaxed, enjoy your newly found energy
-                  and tranquility
-                </li>
-              </ul>
-              <img
-                src="./relaxation.jpg"
-                alt="no image"
-                height="150px"
-                width="250px"
-              />
-            </div>
-          </ons-page>
-        </template>
-
-        <template id="tab3.html">
-          <ons-page id="Tab3">
-            <div class="content">
-              <h1>Instructions</h1>
-              <h3>Put your mind at ease and read a nice book</h3>
-              <ul>
-                <li>
-                  Find a spot in your house where you can sit or lay down
-                  comfortably
-                </li>
-                <li>
-                  Make a nice beverage, for example a cup of tea
-                </li>
-                <li>
-                  Start reading your book and let yourself get pulled away into
-                  the books enchanting world
-                </li>
-                <li>
-                  Stop reading when you feel bored. Reading is not a sprint, it
-                  is a marathon. Take your time with the book.
-                </li>
-              </ul>
-              <img
-                src="./relaxation.jpg"
-                alt="no image"
-                height="150px"
-                width="250px"
-              />
-            </div>
-          </ons-page>
-        </template>
-
-        <template id="tab4.html">
-          <ons-page id="Tab4">
-            <div class="content">
-              <h1>Instructions</h1>
-              <h3>Focus on your face!</h3>
-              <ul>
-                <li>Become aware of your face.</li>
-                <li>Feel the forehead.</li>
-                <li>The eyebrows.</li>
-                <li>Eyes.</li>
-                <li>Nose.</li>
-                <li>Nostrils.</li>
-                <li>Air flowing through the nostrils.</li>
-                <li>Cheeks.</li>
-                <li>Jaw.</li>
-                <li>Lips.</li>
-                <li>Tongue.</li>
-                <li>Whole of the head.</li>
-                <li>The space surrounding the head.</li>
-              </ul>
-              <img
-                src="./relaxation.jpg"
-                alt="no image"
-                height="150px"
-                width="250px"
-              />
-            </div>
-          </ons-page>
-        </template>
-
-        <!--Scripts-->
-        <script src="cordova.js"></script>
-        <script src="libs/evothings/evothings.js"></script>
-        <script src="libs/evothings/ui/ui.js"></script>
-        <!-- TODO: Add libraries that you need -->
-      </body>
-    </html>
+    <template id="tab4.html">
+      <ons-page id="Tab4">
+        <div class="content">
+          <h1>Instructions</h1>
+          <h3>Focus on your face!</h3>
+          <ul>
+            <li>Become aware of your face.</li>
+            <li>Feel the forehead.</li>
+            <li>The eyebrows.</li>
+            <li>Eyes.</li>
+            <li>Nose.</li>
+            <li>Nostrils.</li>
+            <li>Air flowing through the nostrils.</li>
+            <li>Cheeks.</li>
+            <li>Jaw.</li>
+            <li>Lips.</li>
+            <li>Tongue.</li>
+            <li>Whole of the head.</li>
+            <li>The space surrounding the head.</li>
+          </ul>
+          <img src="./relaxation.jpg" alt="no image" height="150px" width="250px" />
+        </div>
+      </ons-page>
+    </template>
 
     <!--Scripts-->
     <script src="cordova.js"></script>
@@ -367,4 +319,14 @@
     <script src="libs/evothings/ui/ui.js"></script>
     <!-- TODO: Add libraries that you need -->
   </body>
+
+  </html>
+
+  <!--Scripts-->
+  <script src="cordova.js"></script>
+  <script src="libs/evothings/evothings.js"></script>
+  <script src="libs/evothings/ui/ui.js"></script>
+  <!-- TODO: Add libraries that you need -->
+</body>
+
 </html>
